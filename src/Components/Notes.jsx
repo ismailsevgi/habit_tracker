@@ -12,10 +12,18 @@ function Notes() {
   */
   return (
     <div className='container'>
-      <h1>selamlar</h1>
+      <nav className='row notesNav'>
+        <label htmlFor='showlist'>Show List</label>
+        <NavLink to='notes' name='showlist' className='col-sm-2'>
+          <button>BTN</button>
+        </NavLink>
+        <NavLink to='create-note' className='col-sm-2'>
+          Create New
+        </NavLink>
+      </nav>
       <Routes>
-        <Route to='create-note' element={<CreateNote />} />
-        <Route to='notes' element={<TaskList />} />
+        <Route path='create-note' element={<CreateNote />} />
+        <Route path='notes' element={<TaskList />} />
       </Routes>
     </div>
   );

@@ -18,7 +18,7 @@ function Navbar() {
         <NavLink className='Logo' to='/performance'>
           Performance
         </NavLink>
-        <NavLink className='Logo' to='/notes/*'>
+        <NavLink className='Logo' to='/notes/'>
           Notes
         </NavLink>
       </div>
