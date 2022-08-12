@@ -1,0 +1,87 @@
+.create-card {
+    background-color: #12353a;
+    color: white;
+    font-size: 1.7rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    height: auto;
+    padding-top: 0.6rem;
+    margin-top: 2rem;
+    
+}
+
+.create-card input, select {
+    padding-left: 0.5rem;
+    
+    color: rgb(255, 255, 255);
+}
+
+.addNewHabit {
+    width: 15rem;
+}
+
+.selectCheck {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: auto auto;
+    margin-top: 0.5rem;
+    
+
+}
+
+#goalType {
+    margin: 0.5rem auto;
+}
+
+.enter-amount {
+    width: 12rem;
+    margin-left: 0.3rem;
+    
+    
+    
+}
+
+#selectTime{
+   
+    font-size: 14px;
+    width: 5rem;
+    height: 3rem;
+}
+
+
+.selectCheck input {
+    height: 3rem;
+    width: 8rem;
+}
+
+.selectCheck input::placeholder {
+    font-size: 18px;
+    padding: auto auto;
+}
+
+
+
+.create-card button {
+    width: 10rem;
+    padding: auto auto;
+    
+}
+
+.colorSelect {
+    width: 16rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+    background-color: rgb(30, 30, 82);
+    margin-bottom: 0.3rem;
+}
+
+.btn-add {
+    border-radius: 5px;
+    margin: 1rem auto;
+    
+}

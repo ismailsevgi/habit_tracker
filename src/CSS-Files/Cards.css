@@ -1,0 +1,134 @@
+
+
+.weeklyGoal {
+    font-size: 24px;
+}
+
+.mainRow {
+    height: 15rem;
+    
+}
+
+.card {
+    border: 5px solid rgb(121, 120, 120)!important;
+    border-radius: 5px!important;
+    
+    
+    
+    margin: 1.9rem;
+    
+    
+}
+
+
+.card--submit {
+    border-radius: 5px;
+    border: 1px solid white;
+}
+
+
+
+.bottomRow {
+    height: 10rem;
+}
+
+.titleRow {
+   
+    background-color: #12353a;
+    color: white!important;
+    height: 5rem;
+    padding-top: 0.5rem;
+   
+  
+}
+
+.titleRow p {
+    background-color: #12353a;
+    font-size: 18px;
+    width: 8rem;
+    
+    
+    
+}
+
+.card input {
+    font-size: 12px;
+    margin-bottom: 1rem;
+    color: white!important;
+}
+
+.progressDiv {
+    height: 3rem;
+    display: flex;
+    border: 2px solid #12353a;
+    
+}
+.progressDiv button {
+    border: none;
+    width: 8rem;
+    font-size: 18px;
+}
+
+.submitDiv {
+    display: flex;
+    padding: auto auto;
+    
+}
+
+#submitDivInput {
+    width: 6rem;
+    height: 2rem;
+    background-color: transparent;
+    border: 3px solid #12353a;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding-left: 0.4rem;
+    font-size: 1rem;
+    color: #12353a;
+}
+.submitDiv button {
+    border: none;
+    background-color: #12353a;
+    font-size: 0.8rem;
+    width: 4rem;
+    height: 2rem;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.dailyGoal {
+    font-size: 18px;
+}
+
+
+
+
+
+.card--delete {
+   
+   
+    padding: auto auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    width: 2rem;
+    border: none;
+    
+    background-color: transparent;
+    
+}
+
+.card--delete button, i {
+    font-size: 1.5rem;
+    background-color: transparent;
+    border: none;
+    color: white;
+}
+
+.card--submit {
+    margin-bottom: 1rem;
+    align-self: center;
+    color: white!important;
+    width: 5rem;
+}
