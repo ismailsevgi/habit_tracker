@@ -6,18 +6,13 @@ import TaskList from './TaskList';
 import { NavLink, Route, Routes } from 'react-router-dom';
 
 function Notes() {
-  /*
-  
-
-  */
   return (
     <div className='container'>
       <nav className='row notesNav'>
-        <label htmlFor='showlist'>Show List</label>
-        <NavLink to='notes' name='showlist' className='col-sm-2'>
-          <button>BTN</button>
+        <NavLink to='notes' name='showlist' className='col-sm-2 offset-4'>
+          Show List
         </NavLink>
-        <NavLink to='create-note' className='col-sm-2'>
+        <NavLink to='create-note' className='col-sm-2 offset-1'>
           Create New
         </NavLink>
       </nav>

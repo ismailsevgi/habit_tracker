@@ -17,7 +17,7 @@ function CreateNote() {
   const formik = useFormik({
     initialValues: {
       taskTitle: '',
-      content: '',
+      description: '',
       priority: '',
     },
 
@@ -29,30 +29,42 @@ function CreateNote() {
   console.log(formik);
 
   return (
-    <form id='myForm' className='row' onSubmit={formik.handleSubmit}>
-      <div className='col-sm-12'>
-        <label htmlFor='taskTitle'>Task Title</label>
+    <form id='myForm' className='col-4 offset-4' onSubmit={formik.handleSubmit}>
+      <div className='form-outline mb-4'>
+        <label className='form-label' for='taskTitle'>
+          Task Title
+        </label>
         <input
           id='taskTitle'
           name='taskTitle'
           type='text'
           onChange={formik.handleChange}
           value={formik.values.taskTitle}
+          placeholder='Enter task title here...'
+          className='form-control'
         />
       </div>
-      <div className='col-sm-12'>
-        <label htmlFor='content'>Task</label>
-        <input
-          id='content'
-          name='content'
+
+      <div className='form-outline mb-4'>
+        <label className='form-label' for='description'>
+          Task Description
+        </label>
+        <textarea
           type='text'
+          id='description'
           onChange={formik.handleChange}
-          value={formik.values.content}
+          value={formik.values.description}
+          className='form-control'
+          maxLength={40}
+          placeholder='Enter task description...'
         />
       </div>
-      <div className='col-sm-12'>
-        <label htmlFor='priority'>Priority</label>
+      <div className='form-outline mb-4'>
+        <label className='form-label' htmlFor='priority'>
+          Priority
+        </label>
         <select
+          className='form-label'
           name='priority'
           value={formik.values.priority}
           onChange={formik.handleChange}
@@ -66,7 +78,9 @@ function CreateNote() {
         </select>
       </div>
 
-      <button type='submit'>Submit</button>
+      <button type='submit' className='btn btn-primary btn-block'>
+        Sign in
+      </button>
     </form>
   );
 }

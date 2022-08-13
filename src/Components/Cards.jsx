@@ -57,12 +57,6 @@ function Cards() {
     setInputAmount(value);
   }
 
-  /*goalName: '',
-    goalType: '',
-    goalAmount: 0,
-    goalCheck: false,
-    */
-
   //handle submit card.id yi alıp goals arraydan bir obje çekecek
   //çekilen objenin içindeki goalAmountsArray'e input girdisini push edecek!
   //bottom >>> Daily based objects
@@ -74,7 +68,7 @@ function Cards() {
         //submit edildiğinde edilen kartın içindeki todaysStatus'a bakar
         //todays
 
-        if (obj.id === id && obj.todaysStatus === false) {
+        if (obj.id === id && obj.todaysStatus == false) {
           return {
             ...obj,
             lastCheck: today,
@@ -98,18 +92,6 @@ function Cards() {
     <div className='row mainRow'>
       {goalsArray.length > 0 &&
         goalsArray.map((card) => {
-          //updates everyDay?
-
-          //Bug testi yaparken startDate ve endDate new Date olarak atanamamalı
-          let First = '2022-Aug-12';
-          let Second = '2022-Aug-13';
-          let Third = '2022-Aug-14';
-          let Fourth = '2022-Aug-15';
-          let Fifth = '2022-Aug-16';
-          let Sixth = '2022-Aug-17';
-          let Seventh = '2022-Aug-18';
-          let Eight = '2022-Aug-19';
-
           if (
             card.goalType === 'Weekly' &&
             today >
@@ -126,10 +108,6 @@ function Cards() {
 
           if (today !== card.lastCheck) {
             card.todaysAmount = 0;
-            card.lastCheck = format(new Date(), 'yyyy-LLL-dd');
-          }
-
-          if (card.lastCheck < today) {
             card.todaysStatus = false;
           }
 

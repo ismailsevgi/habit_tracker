@@ -107,8 +107,10 @@ export const GlobalContextProvider = ({ children }) => {
   );
 
   const [notesArray, setNotesArray] = useState(
-    JSON.parse(localStorage.getItem('notesArray')) || []
+    JSON.parse(localStorage.getItem('notesArray')) || [[], [], []]
   );
+  //2D array is for reducing the loop time for rendering,
+  //Every nested array is for different priorities first: high, second: middle, last: low
 
   //alttakiler performace den geldi
 
