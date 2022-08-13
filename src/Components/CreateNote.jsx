@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import GlobalContext from './GlobalContext';
 import { useFormik } from 'formik';
+import { isYesterday } from 'date-fns';
 
 function CreateNote() {
   const { notesArray, setNotesArray } = useContext(GlobalContext);
