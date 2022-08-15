@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid';
 import '../CSS-Files/CreateCard.css';
 import 'chartjs-adapter-date-fns';
 import { CirclePicker, SwatchesPicker, TwitterPicker } from 'react-color';
-import { endOfISOWeek, format, parseISO } from 'date-fns';
+import { endOfISOWeek, format, parseISO, startOfToday } from 'date-fns';
 
 function CreateCard() {
   const { setGoalsArray, today } = useContext(GlobalContext);
@@ -25,7 +25,7 @@ function CreateCard() {
   const [goal, setGoal] = useState({
     goalName: '',
     goalType: '',
-    goalCreateDay: format(new Date(), 'yyyy-LLL-dd'),
+    goalCreateDay: startOfToday(),
     goalDate: '',
     goalAmount: 0,
     goalWeekly: false,

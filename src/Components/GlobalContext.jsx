@@ -1,6 +1,14 @@
 import React, { createContext, useEffect, useState } from 'react';
 
-import { de, format } from 'date-fns';
+import {
+  addDays,
+  addHours,
+  addMinutes,
+  de,
+  format,
+  formatDistanceToNow,
+  startOfToday,
+} from 'date-fns';
 
 const GlobalContext = createContext();
 
@@ -106,9 +114,12 @@ export const GlobalContextProvider = ({ children }) => {
     JSON.parse(localStorage.getItem('goalsArray')) || []
   );
 
-  const [notesArray, setNotesArray] = useState(
-    JSON.parse(localStorage.getItem('notesArray')) || [[], [], []]
-  );
+  const notesArray = JSON.parse(localStorage.getItem('notesArray')) || [
+    [],
+    [],
+    [],
+  ];
+
   //2D array is for reducing the loop time for rendering,
   //Every nested array is for different priorities first: high, second: middle, last: low
 
@@ -126,6 +137,22 @@ export const GlobalContextProvider = ({ children }) => {
 
   let today = format(new Date(), 'yyyy-LLL-dd');
   console.log('Today: ', today);
+
+  let myToday = startOfToday();
+  let tomorrow = addDays(myToday, 1);
+  tomorrow = addHours(tomorrow, 12);
+  tomorrow = addMinutes(tomorrow, 30);
+
+  let restTime = formatDistanceToNow(tomorrow);
+
+  console.log(
+    'saat ile format: ',
+    myToday,
+    'sssss',
+    tomorrow,
+    'sssss',
+    restTime
+  );
 
   //goalsArray her güncellendiğinde JSON ile bilgiler aktarılacak //useEffect!
 
@@ -184,7 +211,6 @@ export const GlobalContextProvider = ({ children }) => {
         setHabit,
 
         notesArray,
-        setNotesArray,
       }}
     >
       {children}
