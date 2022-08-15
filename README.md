@@ -9,7 +9,7 @@
 <h3>I have used ReactJS to create this tracker app with many small packages such as date-fns. I've listed all below</h3>
 
 <ul>
-  <li>Bootstrap 5.2.0 <a href="https://www.npmjs.com/package/bootstrap"></a></li>
+  <li>Bootstrap 5.2.0 <a href="https://www.npmjs.com/package/bootstrap">Link</a></li>
   <li>Nanoid <a href="https://www.npmjs.com/package/nanoid">Link</a></li>
   <li>react chartjs 2 <a href="https://www.npmjs.com/package/react-chartjs-2">Link</a></li>
   <li>Date-fns <a href="https://www.npmjs.com/package/date-fns">Link</a></li>
