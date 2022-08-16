@@ -1,4 +1,35 @@
+#taskComp i {
+    font-size: 20px!important;
+}
+
+#taskComp {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    
+    border: 1px solid red;
+    width: 1rem;
+    height: 5rem;
+    transform-origin: right;
+    transform: scaleX(0) translateY(-20%) ;
+    transition: all ease .4s;
+    
+
+}
+
+.taskRow:hover #taskComp {
+    transform: scaleX(1) translateY(0%);
+}
+
 .notesNav{
+    display: flex;
+    
+    justify-content: center;
+    gap: 1rem;
+    width: 25rem;
     
 }
 
@@ -25,7 +56,7 @@
     text-decoration: none;
     text-align: center;
     border: 2px solid white;
-    border-radius: 15px;
+    border-radius: 0px;
 }
 
 .labels {
@@ -45,8 +76,8 @@
 
 .highTask {
     border-left: 4px solid red;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
     
     
     
@@ -58,8 +89,8 @@
     border-top: 1px solid red;
     border-bottom: 1px solid red;
     box-shadow: 5px 5px rgba(red, red, red, 0.5);
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
 }
 
 
@@ -72,8 +103,8 @@
 
 .middleTask {
     border-left: 4px solid rgba(229, 255, 0, 0.8);
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
     
     
     
@@ -85,8 +116,8 @@
     border-top: 1px solid yellow;
     border-bottom: 1px solid yellow;
     box-shadow: 5px 5px rgba(yellow, yellow, yellow, 0.5);
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
 }
 
 #lowLabel {
@@ -95,8 +126,8 @@
 
 .lowTask {
     border-left: 4px solid rgba(0, 255, 0, 0.8);
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
     
     
     
@@ -108,9 +139,14 @@
     border-top: 1px solid rgba(0, 255, 0, 0.8);
     border-bottom: 1px solid rgba(0, 255, 0, 0.8);
     box-shadow: 5px 5px rgba(rgba(0, 255, 0, 0.8), rgba(0, 255, 0, 0.8), rgba(0, 255, 0, 0.8), 0.5);
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
 }
+
+
+
+
+
 
 
 
@@ -124,7 +160,7 @@
     align-items: center;
     background-color: #12353a!important;
     border: 2px solid white;
-    border-radius: 15px;
+    border-radius: 0px;
    
 }
 

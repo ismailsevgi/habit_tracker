@@ -114,11 +114,19 @@ export const GlobalContextProvider = ({ children }) => {
     JSON.parse(localStorage.getItem('goalsArray')) || []
   );
 
-  const notesArray = JSON.parse(localStorage.getItem('notesArray')) || [
-    [],
-    [],
-    [],
-  ];
+  const [notesArray, setNotesArray] = useState(
+    JSON.parse(localStorage.getItem('notesArray')) || {
+      high: [],
+      middle: [],
+      low: [],
+    }
+  );
+
+  useEffect(() => {
+    localStorage.setItem('notesArray', JSON.stringify(notesArray));
+  }, [notesArray]);
+
+  console.log('current notesArray: ', notesArray);
 
   //2D array is for reducing the loop time for rendering,
   //Every nested array is for different priorities first: high, second: middle, last: low
@@ -187,6 +195,8 @@ export const GlobalContextProvider = ({ children }) => {
     }
 
     ]
+
+    
   
   
   let varsayılanPerformanceArray [{
@@ -194,9 +204,7 @@ export const GlobalContextProvider = ({ children }) => {
   }]
   */
 
-  const color = 'Green'; //if todays weekly is true!
-
-  console.log('current goalsArray: ', goalsArray);
+  let color = 'green';
 
   return (
     <GlobalContext.Provider
@@ -211,6 +219,7 @@ export const GlobalContextProvider = ({ children }) => {
         setHabit,
 
         notesArray,
+        setNotesArray,
       }}
     >
       {children}

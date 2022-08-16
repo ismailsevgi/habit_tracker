@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import GlobalContext from './GlobalContext';
 import { useFormik } from 'formik';
 import { nanoid } from 'nanoid';
@@ -28,8 +28,10 @@ const months = [
 ];
 
 function CreateNote() {
-  const { notesArray } = useContext(GlobalContext);
-  const [task, setTask] = useState([]);
+  const { notesArray, setNotesArray } = useContext(GlobalContext);
+  const [task, setTask] = useState(null);
+
+  console.log('contexten gelen array: ', notesArray);
 
   //time related states
   const [dates, setDates] = useState([]);
@@ -50,29 +52,48 @@ function CreateNote() {
       priority: '',
     },
 
-    onSubmit: (values) => {
+    onSubmit: (values, { resetForm }) => {
       setTask({
         ...values,
         startDate: allDates[0].format(),
         endDate: allDates[1].format(),
         id: nanoid(),
       });
-
-      console.log('Oluşan Task: ', task);
-
-      if (task.priority === 'High') {
-        notesArray[0].push(task);
-      } else if (task.priority === 'Middle') {
-        notesArray[1].push(task);
-      } else if (task.priority === 'Low') {
-        notesArray[2].push(task);
-      }
-
-      localStorage.setItem('notesArray', JSON.stringify(notesArray));
-
-      document.querySelector('#myForm').reset();
+      resetForm();
     },
   });
+
+  console.log('Oluşan Task: ', task);
+
+  function submitTask(task) {
+    typeof task === 'object' &&
+      setNotesArray((prev) => {
+        if (task.priority === 'High') {
+          return {
+            ...prev,
+            high: [...prev.high, task],
+          };
+        } else if (task.priority === 'Middle') {
+          return {
+            ...prev,
+            middle: [...prev.middle, task],
+          };
+        } else if (task.priority === 'Low') {
+          return {
+            ...prev,
+            low: [...prev.low, task],
+          };
+        }
+      });
+
+    console.log('new Notes Array: ', notesArray);
+    localStorage.setItem('notesArray', JSON.stringify(notesArray));
+  }
+
+  useEffect(() => {
+    console.log('what is type of task?: ', typeof task, ' task: ', task);
+    task !== null && submitTask(task);
+  }, [task]);
 
   // function handleChange(values) {
   //   //your modification on passed value ....
@@ -81,7 +102,7 @@ function CreateNote() {
   // }
 
   return (
-    <form id='myForm' className='col-8 offset-4' onSubmit={formik.handleSubmit}>
+    <form id='myForm' onSubmit={formik.handleSubmit}>
       <div className='form-outline mb-4'>
         <label className='form-label' for='taskTitle'>
           Task Title
