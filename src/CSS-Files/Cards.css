@@ -1,17 +1,19 @@
 
 
 .weeklyGoal {
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .mainRow {
     height: 15rem;
+   
+    margin-top:2rem!important;
     
 }
 
 .card {
-    border: 5px solid rgb(121, 120, 120)!important;
-    border-radius: 5px!important;
+    border: 5px solid #5758BB!important;
+    border-radius: 10px!important;
     
     
     
@@ -34,7 +36,7 @@
 
 .titleRow {
    
-    background-color: #12353a;
+    background-color: #5758BB;
     color: white!important;
     height: 5rem;
     padding-top: 0.5rem;
@@ -43,13 +45,16 @@
 }
 
 .titleRow p {
-    background-color: #12353a;
+    background-color: #5758BB;
     font-size: 18px;
     width: 8rem;
     
     
     
+    
 }
+
+
 
 .card input {
     font-size: 12px;
@@ -60,7 +65,7 @@
 .progressDiv {
     height: 3rem;
     display: flex;
-    border: 2px solid #12353a;
+    border: 2px solid #5758BB;
     
 }
 .progressDiv button {
@@ -68,6 +73,14 @@
     width: 8rem;
     font-size: 18px;
 }
+
+.selectWeekly {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    align-items: center;
+}
+
 
 .submitDiv {
     display: flex;
@@ -79,16 +92,20 @@
     width: 6rem;
     height: 2rem;
     background-color: transparent;
-    border: 3px solid #12353a;
+    border: 3px solid #1B1464;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     padding-left: 0.4rem;
     font-size: 1rem;
-    color: #12353a;
+    
+}
+
+#submitDivInput::placeholder{
+    color: rgb(168, 168, 168);
 }
 .submitDiv button {
     border: none;
-    background-color: #12353a;
+    background-color: #1B1464;
     font-size: 0.8rem;
     width: 4rem;
     height: 2rem;

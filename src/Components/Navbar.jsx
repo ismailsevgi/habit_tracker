@@ -5,22 +5,24 @@ import { NavLink } from 'react-router-dom';
 
 function Navbar() {
   return (
-    <div className='container nav'>
-      <img src={Logo} />
+    <div className='container'>
+      <div className='row nav'>
+        <img className='col-sm-4' src={Logo} />
 
-      <div className='links'>
-        <NavLink className='Logo' to='/'>
-          Main Page
-        </NavLink>
-        <NavLink className='Logo' to='/habits'>
-          Habits
-        </NavLink>
-        <NavLink className='Logo' to='/performance'>
-          Performance
-        </NavLink>
-        <NavLink className='Logo' to='/notes/tasks'>
-          Notes
-        </NavLink>
+        <div className='col-sm-8 rowLinks'>
+          <NavLink className='col-3 Logo' to='/'>
+            Main Page
+          </NavLink>
+          <NavLink className='col-3 Logo' to='/habits'>
+            Habits
+          </NavLink>
+          <NavLink className='col-3 Logo' to='/performance'>
+            Performance
+          </NavLink>
+          <NavLink className='col-3 Logo' to='/notes/tasks'>
+            Notes
+          </NavLink>
+        </div>
       </div>
     </div>
   );

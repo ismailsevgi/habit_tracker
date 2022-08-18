@@ -123,6 +123,7 @@ export const GlobalContextProvider = ({ children }) => {
   );
 
   useEffect(() => {
+    console.log('task set edildi: ', notesArray);
     localStorage.setItem('notesArray', JSON.stringify(notesArray));
   }, [notesArray]);
 

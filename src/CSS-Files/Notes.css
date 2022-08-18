@@ -1,5 +1,13 @@
 #taskComp i {
     font-size: 20px!important;
+   
+    width: 2rem;
+    text-align: center;
+}
+
+#taskComp button {
+    border: none;
+    width: 2rem;
 }
 
 #taskComp {
@@ -8,10 +16,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.3rem;
+    gap: 1rem;
     
-    border: 1px solid red;
-    width: 1rem;
+    border: 1px solid #EA2027;
+    width: 2.5rem;
     height: 5rem;
     transform-origin: right;
     transform: scaleX(0) translateY(-20%) ;
@@ -30,6 +38,7 @@
     justify-content: center;
     gap: 1rem;
     width: 25rem;
+    margin-top: 1rem;
     
 }
 
@@ -56,7 +65,16 @@
     text-decoration: none;
     text-align: center;
     border: 2px solid white;
-    border-radius: 0px;
+    border-radius: 5px;
+    color: white;
+    
+}
+
+
+
+.notesNav a:hover {
+    color: white;
+    background-color:#F79F1F;
 }
 
 .labels {
@@ -69,13 +87,13 @@
 }
 
 #highLabel {
-    border-bottom: 2px solid rgba(255, 0, 0, 0.8);
+    border-bottom: 2px solid #EA2027;
     
    
 }
 
 .highTask {
-    border-left: 4px solid red;
+    border-left: 4px solid #EA2027;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     
@@ -85,10 +103,10 @@
 }
 .highTask:hover {
     
-    border-left: 4px solid red;
-    border-top: 1px solid red;
-    border-bottom: 1px solid red;
-    box-shadow: 5px 5px rgba(red, red, red, 0.5);
+    border-left: 4px solid #EA2027;
+    border-top: 1px solid #EA2027;
+    border-bottom: 1px solid #EA2027;
+    box-shadow: 5px 5px rgba(#EA2027, #EA2027, #EA2027, 0.5);
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
 }
@@ -97,12 +115,12 @@
 
 
 #middleLabel {
-    border-bottom: 3px solid rgba(229, 255, 0, 0.8);
+    border-bottom: 3px solid #C4E538;
 }
 
 
 .middleTask {
-    border-left: 4px solid rgba(229, 255, 0, 0.8);
+    border-left: 4px solid #C4E538;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     
@@ -112,20 +130,20 @@
 }
 .middleTask:hover {
     
-    border-left: 4px solid yellow;
-    border-top: 1px solid yellow;
-    border-bottom: 1px solid yellow;
-    box-shadow: 5px 5px rgba(yellow, yellow, yellow, 0.5);
+    border-left: 4px solid #C4E538;
+    border-top: 1px solid #C4E538;
+    border-bottom: 1px solid #C4E538;
+    box-shadow: 5px 5px rgba(#C4E538, #C4E538, #C4E538, 0.5);
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
 }
 
 #lowLabel {
-    border-bottom: 3px solid rgba(0, 255, 0, 0.8);
+    border-bottom: 3px solid #009432;
 }
 
 .lowTask {
-    border-left: 4px solid rgba(0, 255, 0, 0.8);
+    border-left: 4px solid #009432;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     
@@ -135,10 +153,10 @@
 }
 .lowTask:hover {
     
-    border-left: 4px solid rgba(0, 255, 0, 0.8);
-    border-top: 1px solid rgba(0, 255, 0, 0.8);
-    border-bottom: 1px solid rgba(0, 255, 0, 0.8);
-    box-shadow: 5px 5px rgba(rgba(0, 255, 0, 0.8), rgba(0, 255, 0, 0.8), rgba(0, 255, 0, 0.8), 0.5);
+    border-left: 4px solid #009432;
+    border-top: 1px solid #009432;
+    border-bottom: 1px solid #009432;
+    box-shadow: 5px 5px rgba(#009432, #009432, #009432, 0.5);
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
 }
@@ -158,17 +176,25 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #12353a!important;
+    background-color: #0652DD!important;
     border: 2px solid white;
     border-radius: 0px;
    
 }
 
+#myForm button {
+    background-color: #F79F1F;
+    width: 8rem;
+    font-family: 'Times New Roman', Times, serif;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
 .form-outline {
-    background-color: #12353a;
+    background-color: #0652DD;
 }
 
 .form-label {
-    background-color: #12353a;
+    background-color: #0652DD;
 }
 

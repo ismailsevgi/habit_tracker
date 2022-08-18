@@ -56,17 +56,18 @@ function CreateNote() {
       setTask({
         ...values,
         startDate: allDates[0].format(),
-        endDate: allDates[1].format(),
+        endDate: allDates[allDates.length - 1].format(),
         id: nanoid(),
       });
       resetForm();
+      ///
     },
   });
 
   console.log('Oluşan Task: ', task);
 
   function submitTask(task) {
-    typeof task === 'object' &&
+    typeof task !== null &&
       setNotesArray((prev) => {
         if (task.priority === 'High') {
           return {
@@ -177,8 +178,8 @@ function CreateNote() {
         />
       </div>
 
-      <button type='submit' className='btn btn-primary btn-block'>
-        Sign in
+      <button type='submit' className='btn btn-block'>
+        CREATE
       </button>
     </form>
   );

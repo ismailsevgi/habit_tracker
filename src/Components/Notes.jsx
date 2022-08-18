@@ -8,7 +8,7 @@ import { NavLink, Route, Routes } from 'react-router-dom';
 function Notes() {
   return (
     <div className='container d-flex  align-items-center flex-column'>
-      <nav className='row notesNav'>
+      <nav className='row notesNav mt-3'>
         <NavLink to='tasks' name='showlist' className='col-sm-5'>
           Show List
         </NavLink>

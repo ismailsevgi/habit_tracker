@@ -34,7 +34,7 @@ function CreateCard() {
     todaysAmount: 0,
     lastCheck: '',
     goalsAmountsArray: [], //buraya Weekly ise true-false, Daily ise numaralar koyulacak!
-    colorType: '#12353a',
+    colorType: '#0652DD',
   });
 
   //gets option value
@@ -80,6 +80,19 @@ function CreateCard() {
     document.querySelector('.create-card').reset();
   }
 
+  const palatteColors = [
+    '#F79F1F',
+    '#EA2027',
+    '#C4E538',
+    '#A3CB38',
+    '#009432',
+    '#12CBC4',
+    '#1289A7',
+    '#FDA7DF',
+    '#ED4C67',
+    '#B53471',
+  ];
+
   return (
     <form
       className='create-card'
@@ -90,7 +103,7 @@ function CreateCard() {
         className='d-flex flex-column justify-content-center align-items-center'
         style={{ backgroundColor: goal.colorType }}
       >
-        <h3 style={{ backgroundColor: goal.colorType }}>Have a new Habit</h3>
+        <h3 style={{ backgroundColor: goal.colorType }}>Create a new Habit</h3>
         <input
           name='goalName'
           onChange={handleChange}
@@ -150,8 +163,9 @@ function CreateCard() {
         <TwitterPicker
           color={goal.colorType}
           onChange={handleColorChange}
-          width='13rem'
+          width='14rem'
           triangle='hide'
+          colors={palatteColors}
         />
       </div>
       <button className='btn-add' style={{ backgroundColor: goal.colorType }}>

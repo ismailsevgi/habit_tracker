@@ -1,5 +1,5 @@
 .create-card {
-    background-color: #12353a;
+    background-color: #006266;
     color: white;
     font-size: 1.7rem;
     display: flex;
@@ -13,7 +13,7 @@
 
 .create-card input, select {
     padding-left: 0.5rem;
-    
+    margin-top: 1rem;
     color: rgb(255, 255, 255);
 }
 
@@ -30,6 +30,7 @@
     
 
 }
+
 
 #goalType {
     margin: 0.5rem auto;
@@ -76,7 +77,7 @@
     justify-content: center;
     align-items: center;
    
-    background-color: rgb(30, 30, 82);
+    background-color: #1B1464;
     margin-bottom: 0.3rem;
 }
 
