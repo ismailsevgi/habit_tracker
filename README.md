@@ -16,6 +16,7 @@
   <li>Formik <a href="https://www.npmjs.com/package/formik">Link</a></li>
   <li>DatePicker 3.3.0<a href="https://www.npmjs.com/package/react-multi-date-picker">Link</a></li>
   <li>ElementPopper <a href="https://www.npmjs.com/package/react-element-popper">Link</a></li>
+  <li>React Color 2.19.3 <a href="https://www.npmjs.com/package/react-color">Link</a></li>
 
 </ul>
 
