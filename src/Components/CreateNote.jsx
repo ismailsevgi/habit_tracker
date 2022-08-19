@@ -28,7 +28,8 @@ const months = [
 ];
 
 function CreateNote() {
-  const { notesArray, setNotesArray } = useContext(GlobalContext);
+  const { notesArray, setNotesArray, setToastMsg, toastMsg } =
+    useContext(GlobalContext);
   const [task, setTask] = useState(null);
 
   console.log('contexten gelen array: ', notesArray);
@@ -59,6 +60,7 @@ function CreateNote() {
         endDate: allDates[allDates.length - 1].format(),
         id: nanoid(),
       });
+
       resetForm();
       ///
     },
@@ -87,7 +89,14 @@ function CreateNote() {
         }
       });
 
-    console.log('new Notes Array: ', notesArray);
+    const x = document.getElementById('toast');
+    setToastMsg('You added a new task!');
+    x.className = 'show';
+
+    setTimeout(function () {
+      x.className = x.className.replace('show', '');
+    }, 3000);
+
     localStorage.setItem('notesArray', JSON.stringify(notesArray));
   }
 

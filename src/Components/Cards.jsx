@@ -2,9 +2,12 @@ import React, { useContext, useState } from 'react';
 import GlobalContext from './GlobalContext';
 import '../CSS-Files/Cards.css';
 import { format, endOfISOWeek } from 'date-fns';
+import { Alert } from 'bootstrap';
+import Toast from './Toast';
 
 function Cards() {
-  const { goalsArray, setGoalsArray, today } = useContext(GlobalContext);
+  const { goalsArray, setGoalsArray, today, toastMsg, setToastMsg } =
+    useContext(GlobalContext);
   const [inputAmount, setInputAmount] = useState(null);
 
   function handleDelete(id) {
@@ -81,7 +84,13 @@ function Cards() {
             //inputa girilen veriyi ekliyor.
           };
         } else {
-          console.log('Zaten yeni veri girildi!');
+          const x = document.getElementById('toast');
+          setToastMsg("You already set today's amount!");
+          x.className = 'show';
+
+          setTimeout(function () {
+            x.className = x.className.replace('show', '');
+          }, 3000);
           return obj;
         }
       })
@@ -221,6 +230,7 @@ function Cards() {
             </div>
           );
         })}
+      <Toast toastMsg={toastMsg} />
     </div>
   );
 }

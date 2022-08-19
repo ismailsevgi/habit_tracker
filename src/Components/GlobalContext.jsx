@@ -4,7 +4,6 @@ import {
   addDays,
   addHours,
   addMinutes,
-  de,
   format,
   formatDistanceToNow,
   startOfToday,
@@ -122,6 +121,8 @@ export const GlobalContextProvider = ({ children }) => {
     }
   );
 
+  const [toastMsg, setToastMsg] = useState('');
+
   useEffect(() => {
     console.log('task set edildi: ', notesArray);
     localStorage.setItem('notesArray', JSON.stringify(notesArray));
@@ -221,6 +222,9 @@ export const GlobalContextProvider = ({ children }) => {
 
         notesArray,
         setNotesArray,
+
+        toastMsg,
+        setToastMsg,
       }}
     >
       {children}

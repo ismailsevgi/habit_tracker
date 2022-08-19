@@ -3,7 +3,7 @@ import { Row, Container, Col } from 'react-bootstrap';
 import GlobalContext from './GlobalContext';
 
 function TaskList() {
-  const { notesArray, setNotesArray } = useContext(GlobalContext);
+  const { notesArray, setNotesArray, setToastMsg } = useContext(GlobalContext);
 
   function handleDelete(id, priority) {
     if (priority === 'High') {
@@ -28,13 +28,20 @@ function TaskList() {
         };
       });
     }
-    console.log('işlem sonrası notesArray: ', notesArray);
+
+    const x = document.getElementById('toast');
+    setToastMsg('Task is deleted!');
+    x.className = 'show';
+
+    setTimeout(function () {
+      x.className = x.className.replace('show', '');
+    }, 3000);
   }
 
   return (
     <Container>
       <div id='highLabel' className='col-9 offset-2 labels'>
-        High
+        High Priority Tasks
         {console.log('JSX: ', notesArray)}
       </div>
 
@@ -65,7 +72,7 @@ function TaskList() {
         })}
 
       <div id='middleLabel' className='col-9 offset-2 labels'>
-        Middle
+        Middle Priority Tasks
       </div>
       {notesArray.middle.length > 0 &&
         notesArray.middle.map((task) => {
@@ -93,7 +100,7 @@ function TaskList() {
           );
         })}
       <div id='lowLabel' className='col-9 offset-2 labels'>
-        Low
+        Low Priority Tasks
       </div>
       {notesArray.low.length > 0 &&
         notesArray.low.map((task) => {

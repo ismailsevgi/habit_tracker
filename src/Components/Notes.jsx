@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import '../CSS-Files/Notes.css';
 import CreateNote from './CreateNote';
 import TaskList from './TaskList';
 import { NavLink, Route, Routes } from 'react-router-dom';
+import Toast from './Toast';
+import GlobalContext from './GlobalContext';
 
 function Notes() {
+  const { toastMsg } = useContext(GlobalContext);
+
   return (
     <div className='container d-flex  align-items-center flex-column'>
       <nav className='row notesNav mt-3'>
@@ -20,6 +24,7 @@ function Notes() {
         <Route path='create-note' element={<CreateNote />} />
         <Route path='tasks' element={<TaskList />} />
       </Routes>
+      <Toast toastMsg={toastMsg} />
     </div>
   );
 }

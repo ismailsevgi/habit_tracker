@@ -3,11 +3,11 @@ import GlobalContext from './GlobalContext';
 import { nanoid } from 'nanoid';
 import '../CSS-Files/CreateCard.css';
 import 'chartjs-adapter-date-fns';
-import { CirclePicker, SwatchesPicker, TwitterPicker } from 'react-color';
-import { endOfISOWeek, format, parseISO, startOfToday } from 'date-fns';
+import { TwitterPicker } from 'react-color';
+import { endOfISOWeek, format, startOfToday } from 'date-fns';
 
 function CreateCard() {
-  const { setGoalsArray, today } = useContext(GlobalContext);
+  const { setGoalsArray, today, setToastMsg } = useContext(GlobalContext);
 
   // {
 
@@ -62,7 +62,6 @@ function CreateCard() {
 
   //sends obj to data base
   function handleSubmit(e) {
-    console.log('submit edildi, eklenen goal: ', goal);
     e.preventDefault();
     setGoalsArray((prev) => {
       if (goal.goalType === 'Weekly') {
@@ -77,6 +76,15 @@ function CreateCard() {
 
       return [...prev, goal];
     });
+
+    const x = document.getElementById('toast');
+    setToastMsg('You added a new habit!');
+    x.className = 'show';
+
+    setTimeout(function () {
+      x.className = x.className.replace('show', '');
+    }, 3000);
+
     document.querySelector('.create-card').reset();
   }
 
@@ -134,7 +142,7 @@ function CreateCard() {
           onChange={handleChange}
           name='goalAmount'
           className='enter-Daily'
-          maxLength='4'
+          max='99999'
           type='Number'
         />
       )}
@@ -153,6 +161,7 @@ function CreateCard() {
               name='goalAmount'
               className='enter-Daily'
               type='Number'
+              max='999'
             />
           </div>
         </div>

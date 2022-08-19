@@ -87,7 +87,15 @@
 }
 
 #highLabel {
-    border-bottom: 2px solid #EA2027;
+    border-bottom: 3px solid #EA2027;
+    
+    
+   
+}
+
+#highLabel, #middleLabel, #lowLabel  {
+    
+    font-size: 1.7rem;
     
    
 }
