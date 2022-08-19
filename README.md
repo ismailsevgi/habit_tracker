@@ -2,6 +2,8 @@
 
 <h1>Habit Tracker App</h1>
 
+Live version here: <a href="https://habit-trackerr.netlify.app/">LINK</a>
+
 <small>This app is for people who want to keep their habits in order and keep their habits performances. This App currently uses localstorage as database; in future it may have its own DB. </small>
 
 <p>App isn't fully responsive yet; it won't work properly in small screen devices</p>
@@ -16,6 +18,7 @@
   <li>Formik <a href="https://www.npmjs.com/package/formik">Link</a></li>
   <li>DatePicker 3.3.0<a href="https://www.npmjs.com/package/react-multi-date-picker">Link</a></li>
   <li>ElementPopper <a href="https://www.npmjs.com/package/react-element-popper">Link</a></li>
+  <li>React Color 2.19.3 <a href="https://www.npmjs.com/package/react-color">Link</a></li>
 
 </ul>
 
