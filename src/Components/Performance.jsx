@@ -71,19 +71,24 @@ function Performance() {
   };
 
   const data = {
-    datasets: goalsArray
-
-      .filter(
-        (goal) => goal.goalType === 'Daily' && goal.goalName === selectedGoal
-      ) //filter ile Weekly typelar atıldı!
-      .map((goal) => {
-        return {
-          label: goal.goalName,
-          data: goal.goalsAmountsArray.slice(-showLastFrom).map((obj) => obj),
-          borderColor: `${goal.colorType}`,
-          backgroundColor: `${goal.colorType}`,
-        };
-      }),
+    datasets:
+      goalsArray.length > 0 &&
+      goalsArray
+        .filter(
+          (goal) => goal.goalType === 'Daily' && goal.goalName === selectedGoal
+        ) //filter ile Weekly typelar atıldı!
+        .map((goal) => {
+          console.log('gelen goal: ', goal);
+          console.log('gelen goal.goalsAmountsArray: ', goal.goalsAmountsArray);
+          return {
+            label: goal.goalName,
+            data:
+              goal.goalsAmountsArray.length > 0 &&
+              goal.goalsAmountsArray.slice(-showLastFrom).map((obj) => obj),
+            borderColor: `${goal.colorType}`,
+            backgroundColor: `${goal.colorType}`,
+          };
+        }),
   };
 
   function handleShow(e) {

@@ -25,7 +25,7 @@ const fakeGoalsArray = [
         goalEndDate: '2022-Aug-14',
         goalStartDate: '2022-Aug-11',
         x: '2022-Aug-11',
-        y: 1,
+        y: '1',
       },
       {
         x: '2022-Aug-11',
