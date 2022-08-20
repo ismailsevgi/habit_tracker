@@ -42,7 +42,6 @@ function TaskList() {
     <Container>
       <div id='highLabel' className='col-9 offset-2 labels'>
         High Priority Tasks
-        {console.log('JSX: ', notesArray)}
       </div>
 
       {notesArray.high.length > 0 &&
