@@ -2,6 +2,7 @@
 
 <h1>Habit Tracker App</h1>
 
+Live version here: <a href="https://ismailsevgi.github.io/habit_tracker/">LINK</a> 
 
 
 <small>This app is for people who want to keep their habits in order and keep their habits performances. This App currently uses localstorage as database; in future it may have its own DB. </small>
