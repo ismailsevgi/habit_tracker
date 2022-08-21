@@ -32,33 +32,28 @@ const options = {
     },
   },
   scales: {
-    x: {},
     y: {
       beginAtZero: true,
     },
   },
 };
 
-// const data = {
-//   datasets: [
-//     {
-//       data: [
-//         { x: 'Week 1', y: 20 },
-//         { x: 'Week 2', y: 10 },
-//         { x: 'Week 2', y: 10 },
-
-//       ],
-//       borderColor: `white`,
-//       backgroundColor: `white`,
-//     },
-//   ],
-// };
+const MONTHS = ['WEEK 1', 'WEEK 2', 'WEEK 3'];
 
 export function BarChart() {
-  const { goalsArray, selectedGoal, fakeGoalsArray } =
-    useContext(GlobalContext);
+  const { goalsArray, selectedGoal } = useContext(GlobalContext);
+
+  const weeks = goalsArray
+
+    .filter(
+      (goal) => goal.goalType === 'Weekly' && goal.goalName === selectedGoal
+    ) //filter ile Weekly typelar atıldı!
+    .map((goal) => goal.weekLabels);
+
+  console.log('weeks: ', [...weeks]);
 
   const data = {
+    labels: [].concat.apply([], weeks),
     datasets: goalsArray
 
       .filter(

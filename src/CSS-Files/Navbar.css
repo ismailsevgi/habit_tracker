@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100&display=swap');
 
 * { 
     
-    font-family: 'Oleo Script', cursive;
+    font-family: 'Roboto', sans-serif;
+
     
 
 }
@@ -55,9 +56,10 @@
 .rowLinks a {
     background-color: #1B1464;
     color: white;
-    font-size: 2.1rem;
+    font-size: 1.6rem;
     text-decoration: none;
     font-style: italic;
+    font-weight: bold;
 }
 
 .rowLinks a:hover {

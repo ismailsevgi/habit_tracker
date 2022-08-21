@@ -17,20 +17,17 @@ const fakeGoalsArray = [
     goalAmount: '100',
     goalCreateDay: '2022-Aug-11',
     goalDate: '',
-    goalName: 'Nemerise',
+    goalName: 'Learn Eng. Words',
     goalType: 'Daily',
     goalWeekly: false,
-    goalsAmountsArray: (2)[
-      ({
+    goalsAmountsArray: [
+      {
         goalEndDate: '2022-Aug-14',
         goalStartDate: '2022-Aug-11',
         x: '2022-Aug-11',
-        y: '1',
-      },
-      {
-        x: '2022-Aug-11',
         y: '50',
       },
+
       {
         x: '2022-Aug-12',
         y: '20',
@@ -66,7 +63,7 @@ const fakeGoalsArray = [
       {
         x: '2022-Aug-20',
         y: '85',
-      })
+      },
     ],
     id: '-SDV2mWPlXCGMLHx1Jj8S',
     lastCheck: '2022-Aug-20',
@@ -78,29 +75,16 @@ const fakeGoalsArray = [
     goalAmount: '10',
     goalCreateDay: '2022-Aug-11',
     goalDate: '',
-    goalName: 'Play Go',
+    goalName: 'Weekly Chess',
     goalType: 'Weekly',
     goalWeekly: false,
-    goalsAmountsArray: [
-      {
-        goalEndDate: '2022-Aug-14',
-        goalStartDate: '2022-Aug-11',
-        x: '2022-Aug-11',
-        y: 3,
-      },
-      {
-        goalEndDate: '2022-Aug-14',
-        goalStartDate: '2022-Aug-21',
-        x: '2022-Aug-11',
-        y: 6,
-      },
-      {
-        goalEndDate: '2022-Aug-22',
-        goalStartDate: '2022-Aug-28',
-        x: '2022-Aug-11',
-        y: 5,
-      },
+    weekLabels: ['Week 1', 'Week 2', 'Week 3'],
+    weeks: [
+      { goalEndDate: '2022-Aug-14', goalStartDate: '2022-Aug-11' },
+      { goalEndDate: '2022-Aug-21', goalStartDate: '2022-Aug-15' },
+      { goalEndDate: '2022-Aug-28', goalStartDate: '2022-Aug-22' },
     ],
+    goalsAmountsArray: [3, 7, 5],
     id: 'B5fbMXGmurc0u9Dl0AJO-',
     lastCheck: '2022-Aug-11',
     todaysAmount: 3,
@@ -110,7 +94,7 @@ const fakeGoalsArray = [
 
 export const GlobalContextProvider = ({ children }) => {
   const [goalsArray, setGoalsArray] = useState(
-    JSON.parse(localStorage.getItem('goalsArray')) || []
+    JSON.parse(localStorage.getItem('goalsArray')) || fakeGoalsArray
   );
 
   const [notesArray, setNotesArray] = useState(
@@ -127,8 +111,6 @@ export const GlobalContextProvider = ({ children }) => {
     console.log('task set edildi: ', notesArray);
     localStorage.setItem('notesArray', JSON.stringify(notesArray));
   }, [notesArray]);
-
-  console.log('current notesArray: ', notesArray);
 
   //2D array is for reducing the loop time for rendering,
   //Every nested array is for different priorities first: high, second: middle, last: low
@@ -147,22 +129,6 @@ export const GlobalContextProvider = ({ children }) => {
 
   let today = format(new Date(), 'yyyy-LLL-dd');
   console.log('Today: ', today);
-
-  let myToday = startOfToday();
-  let tomorrow = addDays(myToday, 1);
-  tomorrow = addHours(tomorrow, 12);
-  tomorrow = addMinutes(tomorrow, 30);
-
-  let restTime = formatDistanceToNow(tomorrow);
-
-  console.log(
-    'saat ile format: ',
-    myToday,
-    'sssss',
-    tomorrow,
-    'sssss',
-    restTime
-  );
 
   //goalsArray her güncellendiğinde JSON ile bilgiler aktarılacak //useEffect!
 

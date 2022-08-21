@@ -164,7 +164,7 @@ function Cards() {
                       backgroundColor: `${card.colorType}`,
                     }}
                   >
-                    Todays Amount: {card.todaysAmount}
+                    Today: {card.todaysAmount}
                   </p>
 
                   <div className='col-8 progressDiv offset-2 mt-2 mb-2'>
@@ -203,7 +203,7 @@ function Cards() {
                       backgroundColor: `${card.colorType}`,
                     }}
                   >
-                    Todays Amount: {card.todaysAmount}
+                    Today: {card.todaysAmount}
                   </p>
 
                   <div

@@ -7,7 +7,8 @@ import { TwitterPicker } from 'react-color';
 import { endOfISOWeek, format, startOfToday } from 'date-fns';
 
 function CreateCard() {
-  const { setGoalsArray, today, setToastMsg } = useContext(GlobalContext);
+  const { setGoalsArray, today, setToastMsg, goalsArray } =
+    useContext(GlobalContext);
 
   // {
 
@@ -66,16 +67,15 @@ function CreateCard() {
     setGoalsArray((prev) => {
       if (goal.goalType === 'Weekly') {
         goal.lastCheck = format(new Date(), 'yyyy-LLL-dd');
-        goal.goalsAmountsArray.push({
-          goalStartDate: format(new Date(), 'yyyy-LLL-dd'),
-          goalEndDate: format(endOfISOWeek(new Date()), 'yyyy-LLL-dd'),
-          x: today,
-          y: 0,
-        });
+        goal.weekLabels = ['Week 1'];
+
+        goal.goalsAmountsArray.push(0);
       }
 
       return [...prev, goal];
     });
+
+    console.log('GoalsArrayAfter Submit: ', goalsArray);
 
     const x = document.getElementById('toast');
     setToastMsg('You added a new habit!');
@@ -90,15 +90,15 @@ function CreateCard() {
 
   const palatteColors = [
     '#F79F1F',
+    '#EE5A24',
     '#EA2027',
-    '#C4E538',
     '#A3CB38',
     '#009432',
     '#12CBC4',
     '#1289A7',
-    '#FDA7DF',
     '#ED4C67',
     '#B53471',
+    '#833471',
   ];
 
   return (

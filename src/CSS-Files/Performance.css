@@ -4,10 +4,11 @@
 
 .main {
     color: white;
+    margin-top: 2rem;
 }
 
 .row {
-    margin-top: 2rem;
+    
 }
 
 .infoSide {
@@ -16,18 +17,18 @@
     flex-direction: column;
     padding-top: 1.5rem;
     align-items: center;
-    background-color: #12353a!important;
+    background-color: #0652DD!important;
     border-radius: 15px;
 }
 
 .infoSide small {
-    background-color: #12353a!important;
+    background-color: #0652DD!important;
     color: gray;
     font-family: 'Times New Roman', Times, serif;
 }
 
 .infoSide h2, h4 {
-    background-color: #12353a!important;
+    background-color: #0652DD!important;
     text-shadow: 3px 3px black;
     
     
@@ -37,7 +38,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #12353a!important;
+    background-color: #0652DD!important;
     width: 12rem;
     
     
@@ -54,7 +55,7 @@
     height: 25px;
     cursor: pointer;
     position: relative;
-    background-color: #12353a!important;
+    background-color: #0652DD!important;
   }
 
 
@@ -113,13 +114,13 @@
 
 .chartSide {
     border-radius: 15px;
-    border: 2px solid #12353a;
+    border: 2px solid #0652DD;
     
 }
 
 .leftWingList {
     border-radius: 15px;
-    background-color: #12353a!important;
+    background-color: #0652DD!important;
     
     width: 13rem;
     padding-left: 1rem;
@@ -133,7 +134,7 @@
 .leftWingList h4 {
     
     
-    background-color: #12353a!important;
+    background-color: #0652DD!important;
     border-radius: 15px;
     padding: 5px;
     cursor: pointer;
@@ -151,14 +152,14 @@
     
    
     list-style: none;
-    background-color: #12353a!important;
+    background-color: #0652DD!important;
     
 }
 
 
 
 .leftWingList i {
-    background-color: #12353a!important;
+    background-color: #0652DD!important;
     font-size: 2.5rem;
     padding-right: 0.5rem;
     padding-bottom: 0.5rem;
