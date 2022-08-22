@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react';
 import GlobalContext from './GlobalContext';
 import '../CSS-Files/Cards.css';
-import { format, endOfISOWeek } from 'date-fns';
+import { format, endOfISOWeek, nextMonday } from 'date-fns';
 import { Alert } from 'bootstrap';
 import Toast from './Toast';
 
 function Cards() {
-  const { goalsArray, setGoalsArray, today, toastMsg, setToastMsg } =
+  const { goalsArray, setGoalsArray, today, thisWeek, toastMsg, setToastMsg } =
     useContext(GlobalContext);
   const [inputAmount, setInputAmount] = useState(null);
 
@@ -22,29 +22,30 @@ function Cards() {
   //Handling the progress button. Increases the y
   //bottom >>> weekly based objects
   function handleProgress(id) {
+    function handleArray(arr, amount, time) {
+      if (thisWeek === time) {
+        arr.pop();
+        arr.push(amount + 1);
+        return arr;
+      } else {
+        arr.push(amount + 1);
+        return arr;
+      }
+    }
+
     setGoalsArray(
       goalsArray.map((obj) => {
         if (obj.id === id) {
+          console.log(obj);
           return {
             ...obj,
-
-            goalsAmountsArray: obj.goalsAmountsArray.map((weekly) => {
-              //checks if the endDate is already gone
-              if (
-                format(new Date(), 'yyyy-LLL-dd') < weekly.goalEndDate &&
-                weekly.y < obj.goalAmount
-              ) {
-                return {
-                  ...weekly,
-                  x: weekly.x,
-                  y: (weekly.y += 1),
-                };
-              } else {
-                return weekly;
-              }
-            }),
-
-            todaysAmount: (obj.todaysAmount += 1),
+            lastCheck: today,
+            todaysAmount: obj.todaysAmount + 1,
+            goalsAmountsArray: handleArray(
+              obj.goalsAmountsArray,
+              obj.todaysAmount,
+              obj.checkWeek
+            ),
           };
         } else {
           return obj;
@@ -97,27 +98,22 @@ function Cards() {
     );
   }
 
+  console.log('GoalsArray', goalsArray);
+
   return (
     <div className='row mainRow'>
       {goalsArray.length > 0 &&
         goalsArray.map((card) => {
-          if (
-            card.goalType === 'Weekly' &&
-            today >
-              card.goalsAmountsArray[card.goalsAmountsArray.length - 1]
-                .goalEndDate
-          ) {
-            card.goalsAmountsArray.push({
-              goalStartDate: format(new Date(), 'yyyy-LLL-dd'),
-              goalEndDate: format(endOfISOWeek(new Date()), 'yyyy-LLL-dd'),
-              x: today,
-              y: 0,
-            });
-          }
-
           if (today !== card.lastCheck) {
             card.todaysAmount = 0;
             card.todaysStatus = false;
+          }
+
+          if (card.goalType === 'Weekly' && thisWeek !== card.checkWeek) {
+            card.checkWeek = thisWeek;
+            card.currentWeek = card.currentWeek + 1;
+            card.weekLabels.push(`Week ${card.currentWeek}`);
+            card.goalsAmountsArray.push(0);
           }
 
           return (

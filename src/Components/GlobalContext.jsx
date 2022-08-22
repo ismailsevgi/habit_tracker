@@ -1,13 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 
-import {
-  addDays,
-  addHours,
-  addMinutes,
-  format,
-  formatDistanceToNow,
-  startOfToday,
-} from 'date-fns';
+import { format, endOfISOWeek, nextMonday } from 'date-fns';
 
 const GlobalContext = createContext();
 
@@ -77,13 +70,10 @@ const fakeGoalsArray = [
     goalDate: '',
     goalName: 'Weekly Chess',
     goalType: 'Weekly',
+    currentWeek: 1,
     goalWeekly: false,
     weekLabels: ['Week 1', 'Week 2', 'Week 3'],
-    weeks: [
-      { goalEndDate: '2022-Aug-14', goalStartDate: '2022-Aug-11' },
-      { goalEndDate: '2022-Aug-21', goalStartDate: '2022-Aug-15' },
-      { goalEndDate: '2022-Aug-28', goalStartDate: '2022-Aug-22' },
-    ],
+
     goalsAmountsArray: [3, 7, 5],
     id: 'B5fbMXGmurc0u9Dl0AJO-',
     lastCheck: '2022-Aug-11',
@@ -128,7 +118,12 @@ export const GlobalContextProvider = ({ children }) => {
   //üsttekiler performace den geldi
 
   let today = format(new Date(), 'yyyy-LLL-dd');
+  // let today = format(nextMonday(new Date()), 'yy-LLL-dd'); //nextMonday for texting
   console.log('Today: ', today);
+
+  let thisWeek = format(endOfISOWeek(new Date()), 'yyyy-LLL-dd');
+  // let thisWeek = format(nextMonday(new Date()), 'yy-LLL-dd'); //nextMonday for texting
+  console.log(thisWeek);
 
   //goalsArray her güncellendiğinde JSON ile bilgiler aktarılacak //useEffect!
 
@@ -182,6 +177,7 @@ export const GlobalContextProvider = ({ children }) => {
         goalsArray,
 
         today,
+        thisWeek,
         selectedGoal,
         setSelectedGoal,
         setHabit,

@@ -7,7 +7,7 @@ import { TwitterPicker } from 'react-color';
 import { endOfISOWeek, format, startOfToday } from 'date-fns';
 
 function CreateCard() {
-  const { setGoalsArray, today, setToastMsg, goalsArray } =
+  const { setGoalsArray, today, thisWeek, setToastMsg, goalsArray } =
     useContext(GlobalContext);
 
   // {
@@ -66,9 +66,9 @@ function CreateCard() {
     e.preventDefault();
     setGoalsArray((prev) => {
       if (goal.goalType === 'Weekly') {
-        goal.lastCheck = format(new Date(), 'yyyy-LLL-dd');
+        goal.checkWeek = thisWeek;
         goal.weekLabels = ['Week 1'];
-
+        goal.currentWeek = 1;
         goal.goalsAmountsArray.push(0);
       }
 
