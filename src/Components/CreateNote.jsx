@@ -7,7 +7,7 @@ import DataPicker, {
   DateObject,
   getAllDatesInRange,
 } from 'react-multi-date-picker';
-import DatePanel from 'react-multi-date-picker/plugins/date_panel';
+
 import transition from 'react-element-popper/animations/transition';
 import opacity from 'react-element-popper/animations/opacity';
 
@@ -90,7 +90,7 @@ function CreateNote() {
       });
 
     const x = document.getElementById('toast');
-    setToastMsg('You added a new task!');
+    setToastMsg(toastMsg);
     x.className = 'show';
 
     setTimeout(function () {
@@ -182,12 +182,11 @@ function CreateNote() {
           format='MM/DD/YYYY'
           weekDays={weekDays}
           months={months}
-          plugins={[<DatePanel />]}
           range
         />
       </div>
 
-      <button type='submit' className='btn btn-block'>
+      <button id='createBtn' type='submit' className='btn btn-block'>
         CREATE
       </button>
     </form>

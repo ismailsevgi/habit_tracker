@@ -1,3 +1,19 @@
+.taskCompLow {
+    border-top-left-radius: 10px;
+    border: 3px solid #009432;
+    margin-right: -0.5rem;
+}
+.taskCompMiddle {
+    border-top-left-radius: 10px;
+    border: 3px solid #C4E538;
+    margin-right: -0.5rem;
+}
+.taskCompHigh {
+    border-top-left-radius: 10px;
+    border: 3px solid #EA2027;
+    margin-right: -0.5rem;
+}
+
 #taskComp i {
     font-size: 20px!important;
    
@@ -18,7 +34,7 @@
     justify-content: center;
     gap: 1rem;
     
-    border: 1px solid #EA2027;
+    
     width: 2.5rem;
     height: 5rem;
     transform-origin: right;
@@ -190,7 +206,7 @@
    
 }
 
-#myForm button {
+#createBtn {
     background-color: #F79F1F;
     width: 8rem;
     font-family: 'Times New Roman', Times, serif;

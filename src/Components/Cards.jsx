@@ -1,8 +1,7 @@
 import React, { useContext, useState } from 'react';
 import GlobalContext from './GlobalContext';
 import '../CSS-Files/Cards.css';
-import { format, endOfISOWeek, nextMonday } from 'date-fns';
-import { Alert } from 'bootstrap';
+
 import Toast from './Toast';
 
 function Cards() {
@@ -22,7 +21,7 @@ function Cards() {
   //Handling the progress button. Increases the y
   //bottom >>> weekly based objects
   function handleProgress(id) {
-    function handleArray(arr, amount, time) {
+    const handleArray = (arr, amount, time) => {
       if (thisWeek === time) {
         arr.pop();
         arr.push(amount + 1);
@@ -31,12 +30,11 @@ function Cards() {
         arr.push(amount + 1);
         return arr;
       }
-    }
+    };
 
     setGoalsArray(
       goalsArray.map((obj) => {
         if (obj.id === id) {
-          console.log(obj);
           return {
             ...obj,
             lastCheck: today,
@@ -72,7 +70,7 @@ function Cards() {
         //submit edildiğinde edilen kartın içindeki todaysStatus'a bakar
         //todays
 
-        if (obj.id === id && obj.todaysStatus == false) {
+        if (obj.id === id && obj.todaysStatus === false) {
           return {
             ...obj,
             lastCheck: today,

@@ -48,7 +48,7 @@ function TaskList() {
         notesArray.high.map((task) => {
           return (
             <Row key={task.id} className='taskRow'>
-              <div id='taskComp' className='col-1 offset-3'>
+              <div id='taskComp' className='col-1 offset-3 taskCompHigh'>
                 <i class='fa-solid fa-check'></i>
                 <button onClick={() => handleDelete(task.id, task.priority)}>
                   <i class='fa-regular fa-trash-can'></i>
@@ -77,7 +77,7 @@ function TaskList() {
         notesArray.middle.map((task) => {
           return (
             <Row key={task.id} className='taskRow'>
-              <div id='taskComp' className='col-1 offset-3'>
+              <div id='taskComp' className='col-1 offset-3 taskCompMiddle'>
                 <i class='fa-solid fa-check'></i>
                 <button onClick={() => handleDelete(task.id, task.priority)}>
                   <i class='fa-regular fa-trash-can'></i>
@@ -105,7 +105,7 @@ function TaskList() {
         notesArray.low.map((task) => {
           return (
             <Row key={task.id} className='taskRow'>
-              <div id='taskComp' className='col-1 offset-3'>
+              <div id='taskComp' className='col-1 offset-3 taskCompLow'>
                 <i class='fa-solid fa-check'></i>
                 <button onClick={() => handleDelete(task.id, task.priority)}>
                   <i class='fa-regular fa-trash-can'></i>
