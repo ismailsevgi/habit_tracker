@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
-import GlobalContext from './GlobalContext';
-import '../CSS-Files/Cards.css';
+import GlobalContext from '../Context/GlobalContext';
+import '../../CSS-Files/Cards.css';
 
-import Toast from './Toast';
+import Toast from '../Others/Toast';
 
 function Cards() {
   const { goalsArray, setGoalsArray, today, thisWeek, toastMsg, setToastMsg } =

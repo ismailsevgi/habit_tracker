@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
-import GlobalContext from './GlobalContext';
-import '../CSS-Files/Performance.css';
+import React, { useContext, useState } from 'react';
+import GlobalContext from '../Context/GlobalContext';
+import '../../CSS-Files/Performance.css';
 
 import { Line } from 'react-chartjs-2'; //Line is an element for Chart
 import {

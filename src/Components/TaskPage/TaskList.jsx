@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Row, Container, Col } from 'react-bootstrap';
-import GlobalContext from './GlobalContext';
+import GlobalContext from '../Context/GlobalContext';
 
 function TaskList() {
   const { notesArray, setNotesArray, setToastMsg } = useContext(GlobalContext);

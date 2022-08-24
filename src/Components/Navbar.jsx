@@ -10,9 +10,6 @@ function Navbar() {
         <img className='col-sm-4' src={Logo} />
 
         <div className='col-sm-8 rowLinks'>
-          <NavLink className='col-3 Logo' to='/'>
-            Main Page
-          </NavLink>
           <NavLink className='col-3 Logo' to='/habits'>
             Habits
           </NavLink>
@@ -21,6 +18,9 @@ function Navbar() {
           </NavLink>
           <NavLink className='col-3 Logo' to='/notes/tasks'>
             Notes
+          </NavLink>
+          <NavLink className='col-3 Logo' to='/focus'>
+            Focus
           </NavLink>
         </div>
       </div>

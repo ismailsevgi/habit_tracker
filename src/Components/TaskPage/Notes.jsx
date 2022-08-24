@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 
-import '../CSS-Files/Notes.css';
+import '../../CSS-Files/Notes.css';
 import CreateNote from './CreateNote';
 import TaskList from './TaskList';
 import { NavLink, Route, Routes } from 'react-router-dom';
-import Toast from './Toast';
-import GlobalContext from './GlobalContext';
+import Toast from '../Others/Toast';
+import GlobalContext from '../Context/GlobalContext';
 
 function Notes() {
   const { toastMsg } = useContext(GlobalContext);

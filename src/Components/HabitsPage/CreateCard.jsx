@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
-import GlobalContext from './GlobalContext';
+import GlobalContext from '../Context/GlobalContext';
 import { nanoid } from 'nanoid';
-import '../CSS-Files/CreateCard.css';
+import '../../CSS-Files/CreateCard.css';
 import 'chartjs-adapter-date-fns';
 import { TwitterPicker } from 'react-color';
 import { endOfISOWeek, format, startOfToday } from 'date-fns';

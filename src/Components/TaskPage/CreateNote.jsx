@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import GlobalContext from './GlobalContext';
+import GlobalContext from '../Context/GlobalContext';
 import { useFormik } from 'formik';
 import { nanoid } from 'nanoid';
 
@@ -90,7 +90,7 @@ function CreateNote() {
       });
 
     const x = document.getElementById('toast');
-    setToastMsg(toastMsg);
+    setToastMsg('Task added');
     x.className = 'show';
 
     setTimeout(function () {
@@ -101,7 +101,6 @@ function CreateNote() {
   }
 
   useEffect(() => {
-    console.log('what is type of task?: ', typeof task, ' task: ', task);
     task !== null && submitTask(task);
   }, [task]);
 

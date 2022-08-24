@@ -1,7 +1,7 @@
 import React from 'react';
 import Cards from './Cards';
 import CreateCard from './CreateCard';
-import '../CSS-Files/Habits.css';
+import '../../CSS-Files/Habits.css';
 
 function Habits() {
   return (
