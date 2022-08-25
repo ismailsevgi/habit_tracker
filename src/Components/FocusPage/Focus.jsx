@@ -1,6 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import '../../CSS-Files/Focus.css';
-import tomato from '../../Logo/tomato.png';
+
+import { Howl, howler } from 'howler';
+
+import tomato_done from '../../Logo/tomato_done.png';
+import tomato_unfinished from '../../Logo/tomato_unfinished.png';
+import countDown from '../../Sounds/countdown.mp3';
+import timesUp2 from '../../Sounds/timesUp2.wav';
+
+function SoundPlay(src) {
+  var sound = new Howl({
+    src,
+  });
+
+  sound.play();
+}
+
+function timesUppo(src) {
+  var sound = new Howl({
+    src,
+  });
+
+  sound.play();
+}
 
 function Focus() {
   const [time, setTime] = useState({
@@ -16,6 +38,7 @@ function Focus() {
   });
   const [control, setControl] = useState({ start: false, reset: false });
 
+  //changes the time obj; handles the custom input.
   function handleTime(e) {
     let { name, value } = e.target;
 
@@ -28,7 +51,7 @@ function Focus() {
         break;
       case 'sec':
         setTime({ ...time, sec: parseInt(value) });
-        console.log('value: ', typeof value);
+
         break;
       case 'min':
         setTime({ ...time, min: parseInt(value) });
@@ -45,6 +68,7 @@ function Focus() {
     }
   }
 
+  //handles the mode
   function handleMode() {
     setPoromodo({ ...poromodo, mode: !poromodo.mode });
     console.log('Mode değişti 1:', poromodo.mode);
@@ -61,15 +85,14 @@ function Focus() {
       });
       setTime({ ...time, min: (time.min = 0) });
     }
-
-    console.log('Time:', time, ' pomorodo: ', poromodo);
   }
 
+  //starting and pausing button
   function startTimer() {
     setControl({ ...control, start: !control.start });
-    console.log('güncel start: ', control.start);
   }
 
+  //poromodo mode switch decides which interval to use.
   useEffect(() => {
     if (!poromodo.mode) {
       const myInterval = setInterval(() => {
@@ -121,20 +144,24 @@ function Focus() {
     }
     if (poromodo.mode) {
       const myInterval = setInterval(() => {
-        console.log('pomorodo progress...', control.start);
+        if (time.sec === 6 && time.min === 0) {
+          console.log('ses başladı');
+          SoundPlay(countDown);
+        }
 
         if (time.sec === 0 && time.min === 0 && poromodo.pomoCounter < 7) {
-          if (poromodo.pomoCounter % 2 === 0) {
+          if (poromodo.pomoCounter % 2 === 0 && poromodo.pomoCounter !== 7) {
             setPoromodo({ ...poromodo, pomoCounter: poromodo.pomoCounter + 1 });
             console.log('25 dk daha eklendi');
             setTime({ ...time, min: (time.min = 25) });
-            console.log('Güncel poromodo: ', poromodo);
+            timesUppo(timesUp2);
           }
-          if (poromodo.pomoCounter % 2 === 1) {
+          if (poromodo.pomoCounter % 2 === 1 && poromodo.pomoCounter !== 7) {
             setPoromodo({ ...poromodo, pomoCounter: poromodo.pomoCounter + 1 });
             console.log('5 dk daha dinlenme');
+            timesUppo(timesUp2);
+
             setTime({ ...time, min: (time.min = 5) });
-            console.log('Güncel poromodo: ', poromodo);
           }
         }
 
@@ -142,7 +169,6 @@ function Focus() {
           console.log('Full dinlenme!');
           setPoromodo({ ...poromodo, pomoCounter: (poromodo.pomoCounter = 0) });
           setTime({ ...time, min: (time.min = 30) });
-          console.log('Güncel poromodo: ', poromodo);
         }
 
         if (time.sec !== 0) {
@@ -193,23 +219,29 @@ function Focus() {
           </button>
         </div>
         <div className='col-2 tomato'>
-          <img src={tomato} />
+          {poromodo.pomoCounter <= 0 && <img src={tomato_unfinished} />}
+          {poromodo.pomoCounter >= 1 && <img src={tomato_done} />}
         </div>
         <div className='col-2 tomato'>
-          <img src={tomato} />
+          {poromodo.pomoCounter <= 2 && <img src={tomato_unfinished} />}
+          {poromodo.pomoCounter >= 3 && <img src={tomato_done} />}
         </div>
         <div className='col-2 tomato'>
-          <img src={tomato} />
+          {poromodo.pomoCounter <= 4 && <img src={tomato_unfinished} />}
+          {poromodo.pomoCounter >= 5 && <img src={tomato_done} />}
         </div>
         <div className='col-2 tomato'>
-          <img src={tomato} />
+          {poromodo.pomoCounter <= 6 && <img src={tomato_unfinished} />}
+          {poromodo.pomoCounter >= 7 && <img src={tomato_done} />}
         </div>
       </div>
       <hr></hr>
       <div id='workRest'>
-        {poromodo.mode && poromodo.pomoCounter % 2 === 1
-          ? 'WORKING'
-          : 'RESTING'}
+        <h1>
+          {poromodo.mode && poromodo.pomoCounter % 2 === 1
+            ? 'WORKING'
+            : 'RESTING'}
+        </h1>
       </div>
       <hr></hr>
       <div className='row'>
