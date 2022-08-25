@@ -149,7 +149,7 @@ function Focus() {
           SoundPlay(countDown);
         }
 
-        if (time.sec === 0 && time.min === 0 && poromodo.pomoCounter < 7) {
+        if (time.sec === 0 && time.min === 0) {
           if (poromodo.pomoCounter % 2 === 0 && poromodo.pomoCounter !== 7) {
             setPoromodo({ ...poromodo, pomoCounter: poromodo.pomoCounter + 1 });
             console.log('25 dk daha eklendi');
@@ -163,12 +163,18 @@ function Focus() {
 
             setTime({ ...time, min: (time.min = 5) });
           }
-        }
 
-        if (poromodo.pomoCounter === 7) {
-          console.log('Full dinlenme!');
-          setPoromodo({ ...poromodo, pomoCounter: (poromodo.pomoCounter = 0) });
-          setTime({ ...time, min: (time.min = 30) });
+          if (poromodo.pomoCounter === 7) {
+            console.log('Full dinlenme!');
+            setPoromodo({ ...poromodo, pomoCounter: poromodo.pomoCounter + 1 });
+            setTime({ ...time, min: (time.min = 30) });
+          }
+          if (poromodo.pomoCounter === 8) {
+            setPoromodo({
+              ...poromodo,
+              pomoCounter: (poromodo.pomoCounter = 0),
+            });
+          }
         }
 
         if (time.sec !== 0) {
@@ -255,7 +261,9 @@ function Focus() {
               onChange={(e) => handleTime(e)}
             />
           ) : (
-            <div className='default'>{time.day}</div>
+            <div className='default'>
+              {time.day < 10 ? `0${time.day}` : time.day}
+            </div>
           )}
         </div>
         <div className='col-sm-3 numbers'>
@@ -268,7 +276,9 @@ function Focus() {
               onChange={(e) => handleTime(e)}
             />
           ) : (
-            <div className='default'>{time.hour}</div>
+            <div className='default'>
+              {time.hour < 10 ? `0${time.hour}` : time.hour}
+            </div>
           )}
         </div>
         <div className='col-sm-3 numbers'>
@@ -281,7 +291,9 @@ function Focus() {
               onChange={(e) => handleTime(e)}
             />
           ) : (
-            <div className='default'>{time.min}</div>
+            <div className='default'>
+              {time.min < 10 ? `0${time.min}` : time.min}
+            </div>
           )}
         </div>
         <div className='col-sm-3 numbers'>
@@ -294,7 +306,9 @@ function Focus() {
               onChange={(e) => handleTime(e)}
             />
           ) : (
-            <div className='default'>{time.sec}</div>
+            <div className='default'>
+              {time.sec < 10 ? `0${time.sec}` : time.sec}
+            </div>
           )}
         </div>
       </div>
