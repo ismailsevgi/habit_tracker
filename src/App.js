@@ -11,6 +11,7 @@ function App() {
     <div className='App'>
       <Router>
         <Navbar />
+        <hr></hr>
         <Routes>
           <Route path='/focus' element={<Focus />} />
           <Route path='/habits' element={<Habits />} />

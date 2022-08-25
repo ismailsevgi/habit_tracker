@@ -1,34 +1,101 @@
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch&display=swap');
 
+
+* {
+    box-sizing: border-box;
+}
+
+.poromodoRow {
+    height: 15vh;
+}
+
+.promoTitle {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 2rem;
+   
+   
+    
+}
+
+.promoTitle button {
+    color: orange;
+    border: 5px solid orange;
+    font-family: 'DynaPuff', cursive;
+    width: 5rem;
+    height: 5rem;
+}
+
+.promoTitle button::hover {
+    background-color: orange;
+    border: none;
+    color: white;
+}
+
+.promoTitle h1 {
+    font-family: 'DynaPuff', cursive;
+    width: 15rem;
+    
+}
+
+.tomato  {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tomato img {
+    height: 5rem;
+    width: 5rem;
+    margin-bottom: 1rem;
+}
+
+.default {
+    font-family: 'Chakra Petch', sans-serif;
+    border: 5px solid lightblue;
+    border-radius: 5px;
+    width: 100%;
+    padding: auto auto;
+    padding-left: 5rem;
+    font-size: 7rem;
+    
+}
+
 .numbers {
     display: flex;
     justify-content: center;
-    border: 1px solid red;
+    height: 10rem;
     width: 10rem;
     font-family: 'Chakra Petch', sans-serif;
     font-size: 7rem;
+    border: none;
 }
 
 .numbers input {
     position: relative;
- 
+    margin: 0;
+    
     border-radius: 5px;
     outline: none;
     border: none;
-    padding-left: 0.5rem;
-    border: 1px solid lightblue;
+    padding-left: 5rem;
+    border: 5px solid lightblue;
     font-size: 7rem;
-    height: 9.5rem;
+    height: 10rem;
     width: 100%;
 }
 
 .numbers input::placeholder {
-    letter-spacing: -1.5rem;
+    border: none;
+    
+    font-size: 7rem;
     width: 100%;
 }
 .texts{
     display: flex;
     justify-content: center;
-    border: 1px solid red;
-    font-size: 1rem;
+    border: 5px solid lightblue;
+    font-size: 2rem;
 }
