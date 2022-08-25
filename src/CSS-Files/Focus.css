@@ -21,23 +21,67 @@
 }
 
 .promoTitle button {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     color: orange;
     border: 5px solid orange;
+    border-radius: 15px;
     font-family: 'DynaPuff', cursive;
     width: 5rem;
     height: 5rem;
+
+    transition: background-color 0.5s;
 }
 
-.promoTitle button::hover {
+.promoTitle button:hover {
+    
     background-color: orange;
-    border: none;
+    
     color: white;
+    font-size: 15px;
 }
 
 .promoTitle h1 {
     font-family: 'DynaPuff', cursive;
     width: 15rem;
     
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 1rem;
+    height: 5rem;
+    width: 100%;
+    
+}
+
+.buttons button {
+    height: 4rem;
+    width: 8rem;
+    font-weight: bold;
+    text-decoration: none;
+    text-shadow: 1px 1px black;
+    border: 3px solid orange;
+    border-radius: 15px;
+    font-family: 'DynaPuff', cursive;
+    letter-spacing: 1px;
+    font-size: 2rem;
+    transition: background-color 0.5s;
+}
+.buttons button:hover {
+    background-color: orange;
+    color: white;
+
+}
+
+.startBtn {
+
 }
 
 .workRest {
@@ -61,9 +105,13 @@
     
 }
 
+.subRow button {
+
+}
+
 .default {
     font-family: 'Chakra Petch', sans-serif;
-    border: 5px solid lightblue;
+    
     border-radius: 5px;
     width: 100%;
     padding: auto auto;

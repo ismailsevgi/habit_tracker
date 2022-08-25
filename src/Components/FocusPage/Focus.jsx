@@ -2,23 +2,31 @@ import React, { useState, useEffect } from 'react';
 import '../../CSS-Files/Focus.css';
 
 import { Howl, howler } from 'howler';
-
 import tomato_done from '../../Logo/tomato_done.png';
 import tomato_unfinished from '../../Logo/tomato_unfinished.png';
-import countDown from '../../Sounds/countdown.mp3';
-import timesUp2 from '../../Sounds/timesUp2.wav';
 
-function SoundPlay(src) {
+import countDown from '../../Sounds/countdown.mp3';
+import POP1 from '../../Sounds/POP1.wav';
+import POP2 from '../../Sounds/POP2.wav';
+import POP3 from '../../Sounds/POP3.wav';
+import POP4 from '../../Sounds/POP4.wav';
+
+function SoundPlay() {
   var sound = new Howl({
-    src,
+    src: [countDown],
+    html5: true,
   });
 
   sound.play();
 }
+//, POP2, POP3, POP4
+function popSound() {
+  const popArr = [POP1, POP2, POP3, POP4];
+  let random = Math.floor(Math.random() * 4);
+  console.log('Random: ', random);
 
-function timesUppo(src) {
   var sound = new Howl({
-    src,
+    src: popArr[random],
   });
 
   sound.play();
@@ -78,6 +86,7 @@ function Focus() {
         pomoCounter: (poromodo.pomoCounter = 1),
       });
       setTime({ ...time, min: (time.min = 25) });
+      popSound();
     } else {
       setPoromodo({
         mode: !poromodo.mode,
@@ -145,21 +154,21 @@ function Focus() {
     if (poromodo.mode) {
       const myInterval = setInterval(() => {
         if (time.sec === 6 && time.min === 0) {
-          console.log('ses başladı');
-          SoundPlay(countDown);
+          SoundPlay();
         }
 
         if (time.sec === 0 && time.min === 0) {
           if (poromodo.pomoCounter % 2 === 0 && poromodo.pomoCounter !== 7) {
             setPoromodo({ ...poromodo, pomoCounter: poromodo.pomoCounter + 1 });
             console.log('25 dk daha eklendi');
+
+            popSound();
+
             setTime({ ...time, min: (time.min = 25) });
-            timesUppo(timesUp2);
           }
           if (poromodo.pomoCounter % 2 === 1 && poromodo.pomoCounter !== 7) {
             setPoromodo({ ...poromodo, pomoCounter: poromodo.pomoCounter + 1 });
             console.log('5 dk daha dinlenme');
-            timesUppo(timesUp2);
 
             setTime({ ...time, min: (time.min = 5) });
           }
@@ -225,20 +234,28 @@ function Focus() {
           </button>
         </div>
         <div className='col-2 tomato'>
-          {poromodo.pomoCounter <= 0 && <img src={tomato_unfinished} />}
-          {poromodo.pomoCounter >= 1 && <img src={tomato_done} />}
+          {poromodo.pomoCounter <= 0 && (
+            <img src={tomato_unfinished} alt='tomato' />
+          )}
+          {poromodo.pomoCounter >= 1 && <img src={tomato_done} alt='tomato' />}
         </div>
         <div className='col-2 tomato'>
-          {poromodo.pomoCounter <= 2 && <img src={tomato_unfinished} />}
-          {poromodo.pomoCounter >= 3 && <img src={tomato_done} />}
+          {poromodo.pomoCounter <= 2 && (
+            <img src={tomato_unfinished} alt='tomato' />
+          )}
+          {poromodo.pomoCounter >= 3 && <img src={tomato_done} alt='tomato' />}
         </div>
         <div className='col-2 tomato'>
-          {poromodo.pomoCounter <= 4 && <img src={tomato_unfinished} />}
-          {poromodo.pomoCounter >= 5 && <img src={tomato_done} />}
+          {poromodo.pomoCounter <= 4 && (
+            <img src={tomato_unfinished} alt='tomato' />
+          )}
+          {poromodo.pomoCounter >= 5 && <img src={tomato_done} alt='tomato' />}
         </div>
         <div className='col-2 tomato'>
-          {poromodo.pomoCounter <= 6 && <img src={tomato_unfinished} />}
-          {poromodo.pomoCounter >= 7 && <img src={tomato_done} />}
+          {poromodo.pomoCounter <= 6 && (
+            <img src={tomato_unfinished} alt='tomato' />
+          )}
+          {poromodo.pomoCounter >= 7 && <img src={tomato_done} alt='tomato' />}
         </div>
       </div>
       <hr></hr>
@@ -312,15 +329,18 @@ function Focus() {
           )}
         </div>
       </div>
-      <div className='row'>
+      <div className='row subRow'>
         <div className='col-sm-3 texts'>DAYS </div>
         <div className='col-sm-3 texts'>HOURS </div>
         <div className='col-sm-3 texts'>MINUTES </div>
         <div className='col-sm-3 texts'>SECONDS </div>
       </div>
-      <div className='row'>
-        <button className='col' onClick={() => startTimer()}>
+      <div className='buttons'>
+        <button className='startBtn' onClick={() => startTimer()}>
           {!control.start ? 'START' : 'PAUSE'}
+        </button>
+        <button className='startBtn' onClick={() => startTimer()}>
+          RESET
         </button>
       </div>
     </div>
