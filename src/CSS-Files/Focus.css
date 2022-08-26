@@ -7,7 +7,7 @@
 
 .poromodoRow {
     height: 15vh;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 .promoTitle {
@@ -80,16 +80,7 @@
 
 }
 
-.startBtn {
 
-}
-
-.workRest {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-}
 
 .tomato  {
     
@@ -102,12 +93,11 @@
 .tomato img {
     height: 7rem;
     width: 7rem;
+    margin-bottom: 1rem;
     
 }
 
-.subRow button {
 
-}
 
 .default {
     font-family: 'Chakra Petch', sans-serif;

@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import '../../CSS-Files/Focus.css';
 
 import { Howl, howler } from 'howler';
 import tomato_done from '../../Logo/tomato_done.png';
 import tomato_unfinished from '../../Logo/tomato_unfinished.png';
+import Toast from '../Others/Toast';
+import GlobalContext from '../Context/GlobalContext';
 
 import countDown from '../../Sounds/countdown.mp3';
 import POP1 from '../../Sounds/POP1.wav';
@@ -11,6 +13,7 @@ import POP2 from '../../Sounds/POP2.wav';
 import POP3 from '../../Sounds/POP3.wav';
 import POP4 from '../../Sounds/POP4.wav';
 
+//---------SOUNDS-------------//
 function SoundPlay() {
   var sound = new Howl({
     src: [countDown],
@@ -32,7 +35,10 @@ function popSound() {
   sound.play();
 }
 
+//------------------------------------------------//
+
 function Focus() {
+  const { setToastMsg, toastMsg } = useContext(GlobalContext);
   const [time, setTime] = useState({
     day: 0,
     hour: 0,
@@ -50,7 +56,7 @@ function Focus() {
   function handleTime(e) {
     let { name, value } = e.target;
 
-    if (typeof value === 'string' && value === '0') {
+    if (typeof value !== 'string' || value < '0') {
       value = '0';
     }
     switch (name) {
@@ -79,7 +85,7 @@ function Focus() {
   //handles the mode
   function handleMode() {
     setPoromodo({ ...poromodo, mode: !poromodo.mode });
-    console.log('Mode değişti 1:', poromodo.mode);
+
     if (!poromodo.mode) {
       setPoromodo({
         mode: !poromodo.mode,
@@ -98,7 +104,29 @@ function Focus() {
 
   //starting and pausing button
   function startTimer() {
-    setControl({ ...control, start: !control.start });
+    if (time.day > 0 || time.hour > 0 || time.min > 0 || time.sec > 0) {
+      setControl({ ...control, start: !control.start });
+
+      const x = document.getElementById('toast');
+
+      x.className = 'show';
+
+      setTimeout(function () {
+        x.className = x.className.replace('show', '');
+      }, 3000);
+
+      control.start ? setToastMsg('PAUSED') : setToastMsg('STARTED');
+    } else {
+      const x = document.getElementById('toast');
+
+      x.className = 'show';
+
+      setTimeout(function () {
+        x.className = x.className.replace('show', '');
+      }, 3000);
+
+      setToastMsg('Please enter positive number!');
+    }
   }
 
   //poromodo mode switch decides which interval to use.
@@ -106,6 +134,9 @@ function Focus() {
     if (!poromodo.mode) {
       const myInterval = setInterval(() => {
         console.log('interval progress...', control.start);
+        if (time.sec === 6 && time.min === 0) {
+          SoundPlay();
+        }
 
         if (
           time.sec === 0 &&
@@ -113,7 +144,6 @@ function Focus() {
           time.hour === 0 &&
           time.day === 0
         ) {
-          console.log('Süre doldu');
           clearInterval(myInterval);
         }
 
@@ -152,13 +182,18 @@ function Focus() {
       return () => clearInterval(myInterval);
     }
     if (poromodo.mode) {
+      console.log('poromodo.mode: ', poromodo.mode);
       const myInterval = setInterval(() => {
         if (time.sec === 6 && time.min === 0) {
           SoundPlay();
         }
 
         if (time.sec === 0 && time.min === 0) {
-          if (poromodo.pomoCounter % 2 === 0 && poromodo.pomoCounter !== 7) {
+          if (
+            poromodo.pomoCounter % 2 === 0 &&
+            poromodo.pomoCounter !== 7 &&
+            poromodo.pomoCounter !== 8
+          ) {
             setPoromodo({ ...poromodo, pomoCounter: poromodo.pomoCounter + 1 });
             console.log('25 dk daha eklendi');
 
@@ -180,9 +215,10 @@ function Focus() {
           }
           if (poromodo.pomoCounter === 8) {
             setPoromodo({
-              ...poromodo,
+              mode: (poromodo.mode = false),
               pomoCounter: (poromodo.pomoCounter = 0),
             });
+            return () => clearInterval(myInterval);
           }
         }
 
@@ -218,7 +254,10 @@ function Focus() {
       if (control.start === false) {
         clearInterval(myInterval);
       }
-      return () => clearInterval(myInterval);
+      return () => {
+        console.log('Return e girdi');
+        clearInterval(myInterval);
+      };
     }
   }, [control]);
 
@@ -258,14 +297,7 @@ function Focus() {
           {poromodo.pomoCounter >= 7 && <img src={tomato_done} alt='tomato' />}
         </div>
       </div>
-      <hr></hr>
-      <div id='workRest'>
-        <h1>
-          {poromodo.mode && poromodo.pomoCounter % 2 === 1
-            ? 'WORKING'
-            : 'RESTING'}
-        </h1>
-      </div>
+
       <hr></hr>
       <div className='row'>
         <div className='col-sm-3 numbers'>
@@ -273,9 +305,10 @@ function Focus() {
             <input
               type='number'
               name='day'
-              max={59}
+              max={365}
               placeholder={time.day}
               onChange={(e) => handleTime(e)}
+              readOnly={poromodo.mode}
             />
           ) : (
             <div className='default'>
@@ -288,9 +321,11 @@ function Focus() {
             <input
               type='number'
               name='hour'
+              maxLength={2}
               max={59}
               placeholder={time.hour}
               onChange={(e) => handleTime(e)}
+              readOnly={poromodo.mode}
             />
           ) : (
             <div className='default'>
@@ -303,9 +338,11 @@ function Focus() {
             <input
               type='number'
               name='min'
+              maxLength={2}
               max={59}
               placeholder={time.min}
               onChange={(e) => handleTime(e)}
+              readOnly={poromodo.mode}
             />
           ) : (
             <div className='default'>
@@ -319,8 +356,10 @@ function Focus() {
               type='number'
               name='sec'
               max={59}
+              maxLength={2}
               placeholder={time.sec}
               onChange={(e) => handleTime(e)}
+              readOnly={poromodo.mode}
             />
           ) : (
             <div className='default'>
@@ -343,6 +382,7 @@ function Focus() {
           RESET
         </button>
       </div>
+      <Toast toastMsg={toastMsg} />
     </div>
   );
 }

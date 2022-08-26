@@ -29,7 +29,8 @@
 
 .infoSide h2, h4 {
     background-color: #0652DD!important;
-    text-shadow: 3px 3px black;
+    text-shadow: 0px 2px black;
+    font-weight: bold;
     
     
 }
