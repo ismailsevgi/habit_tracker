@@ -111,7 +111,7 @@ function CreateCard() {
         className='d-flex flex-column justify-content-center align-items-center'
         style={{ backgroundColor: goal.colorType }}
       >
-        <h3 style={{ backgroundColor: goal.colorType }}>Create a new Habit</h3>
+        <h3 style={{ backgroundColor: goal.colorType }}>CREATE</h3>
         <input
           name='goalName'
           onChange={handleChange}
@@ -119,6 +119,7 @@ function CreateCard() {
           maxLength='18'
           type='text'
           className='addNewHabit'
+          required
         />
       </div>
       <div
@@ -128,44 +129,54 @@ function CreateCard() {
         <h3 id='goalType' style={{ backgroundColor: goal.colorType }}>
           Goal Type
         </h3>
-        <select name='goalType' value={goal.goalType} onChange={handleChange}>
-          <option value='' selected>
-            --- Choose Type ---
-          </option>
-          <option value='Daily'>Daily</option>
-          <option value='Weekly'>Weekly</option>
-        </select>
-      </div>
-      {goal.goalType === 'Daily' && (
-        <input
-          placeholder='Enter Daily...'
-          onChange={handleChange}
-          name='goalAmount'
-          className='enter-Daily'
-          max='99999'
-          type='Number'
-        />
-      )}
-      {goal.goalType === 'Weekly' && (
-        <div
-          className='WeeklyComponent'
-          style={{ backgroundColor: goal.colorType }}
-        >
-          <div
-            className='selectWeekly'
-            style={{ backgroundColor: goal.colorType }}
+
+        <div id='selectDiv'>
+          <select
+            id='select'
+            name='goalType'
+            value={goal.goalType}
+            onChange={handleChange}
           >
+            <option value='' selected>
+              TYPE
+            </option>
+            <option value='Daily'>DAILY</option>
+            <option value='Weekly'>WEEKLY</option>
+          </select>
+          {goal.goalType === 'Daily' && (
             <input
-              placeholder='Enter Weekly goal...'
+              placeholder='Amount...'
               onChange={handleChange}
               name='goalAmount'
               className='enter-Daily'
+              max='99999'
               type='Number'
-              max='999'
+              required
             />
-          </div>
+          )}
+          {goal.goalType === 'Weekly' && (
+            <div
+              className='WeeklyComponent'
+              style={{ backgroundColor: goal.colorType }}
+            >
+              <div
+                className='selectWeekly'
+                style={{ backgroundColor: goal.colorType }}
+              >
+                <input
+                  placeholder='Amount...'
+                  onChange={handleChange}
+                  name='goalAmount'
+                  className='enter-Daily'
+                  type='Number'
+                  max='999'
+                  required
+                />
+              </div>
+            </div>
+          )}
         </div>
-      )}
+      </div>
       <div className='colorSelect' style={{ backgroundColor: goal.colorType }}>
         <h3 style={{ backgroundColor: goal.colorType }}>Choose Color</h3>
 
@@ -178,7 +189,7 @@ function CreateCard() {
         />
       </div>
       <button className='btn-add' style={{ backgroundColor: goal.colorType }}>
-        Add
+        ADD
       </button>
     </form>
   );

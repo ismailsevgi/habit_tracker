@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+
+
+
+
 .poromodoRow {
     height: 15vh;
     margin-bottom: 2rem;
@@ -14,7 +18,7 @@
    display: flex;
    justify-content: center;
    align-items: center;
-   gap: 2rem;
+   gap: 3rem;
    
    
     
@@ -101,48 +105,131 @@
 
 .default {
     font-family: 'Chakra Petch', sans-serif;
+    display: block;
+    height: 100%;
+    width: 150%;
+    
+    padding-left: 2rem;
+    font-size: 7rem;
+
+    background-color: #F79F1F;
+    
+    
+}
+
+.numbersRow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: 'item-1 item-2 item-3';
+   
     
     border-radius: 5px;
-    width: 100%;
-    padding: auto auto;
-    padding-left: 5rem;
-    font-size: 7rem;
+    margin: 2rem auto;
     
+    width: 50vw;
+    height: 15rem;
+
+    
+
+}
+
+.numbersRow input {
+    width: 100%;
+    height: 10rem;
+    font-size: 7rem;
+    padding-left: 2rem;
+    
+    
+}
+
+.numbersRow input::-webkit-inner-spin-button{
+    width: 0;
+    height: 0;
+}
+.numbersRow input:focus{
+    outline: 2px solid orange;
+   
+}
+
+.numbersRow input[type=number]:hover::-webkit-inner-spin-button {  
+    width: 0;
+    height: 0;
+    background: #F79F1F;
+    color: #F79F1F;
+}
+
+
+
+.item-1 {
+    grid-area: item-1;
+    width: 10vw;
+    
+}
+.item-2 {
+    grid-area: item-2;
+    width: 10vw;
+    position: relative;
+}
+.item-3 {
+    grid-area: item-3;
+    width: 10vw;
+}
+
+
+
+
+
+
+
+
+@keyframes tickTack {
+    0% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    40% {
+        opacity: 0;
+    }
+    60% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .numbers {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
     height: 10rem;
-    width: 10rem;
+    width: 13rem;
     font-family: 'Chakra Petch', sans-serif;
     font-size: 7rem;
-    border: none;
+    
+    
 }
 
-.numbers input {
-    position: relative;
-    margin: 0;
-    
-    border-radius: 5px;
-    outline: none;
-    border: none;
-    padding-left: 5rem;
-    border: 5px solid lightblue;
-    font-size: 7rem;
-    height: 10rem;
-    width: 100%;
-}
-
-.numbers input::placeholder {
-    border: none;
-    
-    font-size: 7rem;
-    width: 100%;
-}
-.texts{
-    display: flex;
-    justify-content: center;
-    border: 5px solid lightblue;
+.numbers-label {
+    position: absolute;
+    font-family: 'Chakra Petch', sans-serif;
+    top: 125%;
+    left: 50%;
+    width: 13rem;
+    transform: translate(-50%, -50%);
     font-size: 2rem;
+    font-weight: bolder;
+    text-transform: uppercase;
+    text-shadow: 0 2px orange;
+    letter-spacing: 2px;
+    
+    text-align: center;
 }
+

@@ -103,6 +103,11 @@ function Focus() {
   }
 
   //starting and pausing button
+
+  function resetTimer() {
+    window.location.reload();
+  }
+
   function startTimer() {
     if (time.day > 0 || time.hour > 0 || time.min > 0 || time.sec > 0) {
       setControl({ ...control, start: !control.start });
@@ -299,31 +304,15 @@ function Focus() {
       </div>
 
       <hr></hr>
-      <div className='row'>
-        <div className='col-sm-3 numbers'>
-          {!control.start ? (
-            <input
-              type='number'
-              name='day'
-              max={365}
-              placeholder={time.day}
-              onChange={(e) => handleTime(e)}
-              readOnly={poromodo.mode}
-            />
-          ) : (
-            <div className='default'>
-              {time.day < 10 ? `0${time.day}` : time.day}
-            </div>
-          )}
-        </div>
-        <div className='col-sm-3 numbers'>
+      <div className='numbersRow'>
+        <div className='numbers item-1'>
           {!control.start ? (
             <input
               type='number'
               name='hour'
               maxLength={2}
               max={59}
-              placeholder={time.hour}
+              placeholder={time.hour < 10 ? `0${time.hour}` : time.hour}
               onChange={(e) => handleTime(e)}
               readOnly={poromodo.mode}
             />
@@ -332,15 +321,18 @@ function Focus() {
               {time.hour < 10 ? `0${time.hour}` : time.hour}
             </div>
           )}
+          <div className='numbers-label'>
+            <p>HOURS</p>
+          </div>
         </div>
-        <div className='col-sm-3 numbers'>
+        <div className='numbers item-2'>
           {!control.start ? (
             <input
               type='number'
               name='min'
               maxLength={2}
               max={59}
-              placeholder={time.min}
+              placeholder={time.min < 10 ? `0${time.min}` : time.min}
               onChange={(e) => handleTime(e)}
               readOnly={poromodo.mode}
             />
@@ -349,36 +341,38 @@ function Focus() {
               {time.min < 10 ? `0${time.min}` : time.min}
             </div>
           )}
+          <div className='numbers-label'>
+            <p>MINUTES</p>
+          </div>
         </div>
-        <div className='col-sm-3 numbers'>
+
+        <div className='numbers item-3'>
           {!control.start ? (
             <input
               type='number'
               name='sec'
               max={59}
               maxLength={2}
-              placeholder={time.sec}
+              placeholder={time.sec < 10 ? `0${time.sec}` : time.sec}
               onChange={(e) => handleTime(e)}
               readOnly={poromodo.mode}
             />
           ) : (
-            <div className='default'>
+            <div className='default default-sec'>
               {time.sec < 10 ? `0${time.sec}` : time.sec}
             </div>
           )}
+          <div className='numbers-label'>
+            <p>SECONDS</p>
+          </div>
         </div>
       </div>
-      <div className='row subRow'>
-        <div className='col-sm-3 texts'>DAYS </div>
-        <div className='col-sm-3 texts'>HOURS </div>
-        <div className='col-sm-3 texts'>MINUTES </div>
-        <div className='col-sm-3 texts'>SECONDS </div>
-      </div>
+
       <div className='buttons'>
         <button className='startBtn' onClick={() => startTimer()}>
           {!control.start ? 'START' : 'PAUSE'}
         </button>
-        <button className='startBtn' onClick={() => startTimer()}>
+        <button className='startBtn' onClick={() => resetTimer()}>
           RESET
         </button>
       </div>
