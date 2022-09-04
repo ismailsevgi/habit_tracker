@@ -19,7 +19,7 @@ Live version here: <a href="https://ismailsevgi.github.io/habit_tracker/">LINK</
   <li>DatePicker 3.3.0<a href="https://www.npmjs.com/package/react-multi-date-picker">Link</a></li>
   <li>ElementPopper <a href="https://www.npmjs.com/package/react-element-popper">Link</a></li>
   <li>React Color 2.19.3 <a href="https://www.npmjs.com/package/react-color">Link</a></li>
-  <li>Howler</li> 
+  <li>Howler 2.2.3 <a href="https://www.npmjs.com/package/howler">Link</a></li> 
 </ul>
 
 <h3>The features listed below is going to be add in near feature</h3>
