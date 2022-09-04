@@ -124,6 +124,7 @@ function CreateNote() {
           value={formik.values.taskTitle}
           placeholder='Enter task title here...'
           className='form-control'
+          required
         />
       </div>
 
@@ -139,6 +140,7 @@ function CreateNote() {
           className='form-control'
           maxLength={40}
           placeholder='Enter task description...'
+          required
         />
       </div>
       <div className='form-outline mb-4'>
@@ -150,6 +152,7 @@ function CreateNote() {
           name='priority'
           value={formik.values.priority}
           onChange={formik.handleChange}
+          required
         >
           <option value='' selected>
             --- Choose Type ---
