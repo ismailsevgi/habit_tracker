@@ -1,9 +1,8 @@
 {
   "files": {
-    "main.css": "/habit_tracker/static/css/main.0a834f83.css",
-    "main.js": "/habit_tracker/static/js/main.5dd0351a.js",
+    "main.css": "/habit_tracker/static/css/main.8f7be314.css",
+    "main.js": "/habit_tracker/static/js/main.6137d7fb.js",
     "static/media/countdown.mp3": "/habit_tracker/static/media/countdown.1df395b551c512cfa120.mp3",
-    "static/media/newLogo.jpg": "/habit_tracker/static/media/newLogo.43995b64479b0e811b35.jpg",
     "static/media/tomato_done.png": "/habit_tracker/static/media/tomato_done.f0ddd68d73e5ab8f7db7.png",
     "static/media/POP1.wav": "/habit_tracker/static/media/POP1.a75d1022a9111c1b4780.wav",
     "static/media/POP2.wav": "/habit_tracker/static/media/POP2.98d6875155d13a11c6a5.wav",
@@ -11,11 +10,11 @@
     "static/media/tomato_unfinished.png": "/habit_tracker/static/media/tomato_unfinished.b53fdca95512343208d2.png",
     "static/media/POP3.wav": "/habit_tracker/static/media/POP3.848129954f143ea2b098.wav",
     "index.html": "/habit_tracker/index.html",
-    "main.0a834f83.css.map": "/habit_tracker/static/css/main.0a834f83.css.map",
-    "main.5dd0351a.js.map": "/habit_tracker/static/js/main.5dd0351a.js.map"
+    "main.8f7be314.css.map": "/habit_tracker/static/css/main.8f7be314.css.map",
+    "main.6137d7fb.js.map": "/habit_tracker/static/js/main.6137d7fb.js.map"
   },
   "entrypoints": [
-    "static/css/main.0a834f83.css",
-    "static/js/main.5dd0351a.js"
+    "static/css/main.8f7be314.css",
+    "static/js/main.6137d7fb.js"
   ]
 }
