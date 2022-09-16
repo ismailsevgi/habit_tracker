@@ -35,22 +35,27 @@ function popSound() {
   sound.play();
 }
 
+const allStates = {
+  initialTimeState: {
+    hour: 0,
+    min: 0,
+    sec: 0,
+  },
+  initialPoromodoState: {
+    mode: false,
+    pomoCounter: 0,
+  },
+  initialControlState: { start: false, reset: false },
+};
+
 //------------------------------------------------//
 
 function Focus() {
   const { setToastMsg, toastMsg } = useContext(GlobalContext);
-  const [time, setTime] = useState({
-    day: 0,
-    hour: 0,
-    min: 0,
-    sec: 0,
-  });
+  const [time, setTime] = useState(allStates.initialTimeState);
 
-  const [poromodo, setPoromodo] = useState({
-    mode: false,
-    pomoCounter: 0,
-  });
-  const [control, setControl] = useState({ start: false, reset: false });
+  const [poromodo, setPoromodo] = useState(allStates.initialPoromodoState);
+  const [control, setControl] = useState(allStates.initialControlState);
 
   //changes the time obj; handles the custom input.
   function handleTime(e) {
@@ -73,11 +78,6 @@ function Focus() {
         break;
       case 'hour':
         setTime({ ...time, hour: parseInt(value) });
-
-        break;
-      case 'day':
-        setTime({ ...time, day: parseInt(value) });
-
         break;
     }
   }
@@ -86,26 +86,28 @@ function Focus() {
   function handleMode() {
     setPoromodo({ ...poromodo, mode: !poromodo.mode });
 
-    if (!poromodo.mode) {
+    if (poromodo.mode) {
       setPoromodo({
         mode: !poromodo.mode,
         pomoCounter: (poromodo.pomoCounter = 1),
       });
-      setTime({ ...time, min: (time.min = 25) });
+      setTime({ ...time, min: (time.min = 25), sec: (time.sec = 0) });
       popSound();
     } else {
       setPoromodo({
         mode: !poromodo.mode,
         pomoCounter: (poromodo.pomoCounter = 0),
       });
-      setTime({ ...time, min: (time.min = 0) });
+      setTime({ ...time, min: (time.min = 0), sec: (time.sec = 0) });
     }
   }
 
   //starting and pausing button
 
   function resetTimer() {
-    window.location.reload();
+    setTime(allStates.initialTimeState);
+    setPoromodo(allStates.initialPoromodoState);
+    setControl(allStates.initialControlState);
   }
 
   function startTimer() {
@@ -138,7 +140,6 @@ function Focus() {
   useEffect(() => {
     if (!poromodo.mode) {
       const myInterval = setInterval(() => {
-        console.log('interval progress...', control.start);
         if (time.sec === 6 && time.min === 0) {
           SoundPlay();
         }
@@ -153,8 +154,6 @@ function Focus() {
         }
 
         if (time.sec !== 0) {
-          console.log('time.sec !== 0', time.sec);
-          console.log('control.start :', control.start);
           setTime({ ...time, sec: (time.sec -= 1) });
         }
 
@@ -187,7 +186,6 @@ function Focus() {
       return () => clearInterval(myInterval);
     }
     if (poromodo.mode) {
-      console.log('poromodo.mode: ', poromodo.mode);
       const myInterval = setInterval(() => {
         if (time.sec === 6 && time.min === 0) {
           SoundPlay();
@@ -200,23 +198,20 @@ function Focus() {
             poromodo.pomoCounter !== 8
           ) {
             setPoromodo({ ...poromodo, pomoCounter: poromodo.pomoCounter + 1 });
-            console.log('25 dk daha eklendi');
 
             popSound();
 
-            setTime({ ...time, min: (time.min = 25) });
+            setTime({ ...time, min: (time.min = 25), sec: (time.sec = 0) });
           }
           if (poromodo.pomoCounter % 2 === 1 && poromodo.pomoCounter !== 7) {
             setPoromodo({ ...poromodo, pomoCounter: poromodo.pomoCounter + 1 });
-            console.log('5 dk daha dinlenme');
 
-            setTime({ ...time, min: (time.min = 5) });
+            setTime({ ...time, min: (time.min = 5), sec: (time.sec = 0) });
           }
 
           if (poromodo.pomoCounter === 7) {
-            console.log('Full dinlenme!');
             setPoromodo({ ...poromodo, pomoCounter: poromodo.pomoCounter + 1 });
-            setTime({ ...time, min: (time.min = 30) });
+            setTime({ ...time, min: (time.min = 30), sec: (time.sec = 0) });
           }
           if (poromodo.pomoCounter === 8) {
             setPoromodo({
@@ -264,7 +259,7 @@ function Focus() {
         clearInterval(myInterval);
       };
     }
-  }, [control]);
+  }, [control, poromodo.mode]);
 
   //mode açık olursa borderlar turuncu olacak!
 
