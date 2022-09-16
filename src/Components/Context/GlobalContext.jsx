@@ -92,6 +92,7 @@ export const GlobalContextProvider = ({ children }) => {
       high: [],
       middle: [],
       low: [],
+      done: [],
     }
   );
 

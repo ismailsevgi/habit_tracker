@@ -5,26 +5,87 @@ import GlobalContext from '../Context/GlobalContext';
 function TaskList() {
   const { notesArray, setNotesArray, setToastMsg } = useContext(GlobalContext);
 
-  function handleDelete(id, priority) {
+  function handleDelete(id, priority, type) {
     if (priority === 'High') {
       setNotesArray((notesArray) => {
-        return {
-          ...notesArray,
-          high: notesArray.high.filter((obj) => id !== obj.id),
-        };
+        if (type === 'check') {
+          return {
+            ...notesArray,
+            done: [
+              ...notesArray.done,
+              ...notesArray.high.filter((obj) => {
+                if (id === obj.id) {
+                  return {
+                    ...obj,
+                    priority: (obj.priority = 'Done'),
+                  };
+                }
+              }),
+            ],
+            high: notesArray.high.filter((obj) => id !== obj.id),
+          };
+        } else {
+          return {
+            ...notesArray,
+            high: notesArray.high.filter((obj) => id !== obj.id),
+          };
+        }
       });
     } else if (priority === 'Middle') {
       setNotesArray((notesArray) => {
-        return {
-          ...notesArray,
-          middle: notesArray.middle.filter((obj) => id !== obj.id),
-        };
+        if (type === 'check') {
+          return {
+            ...notesArray,
+            done: [
+              ...notesArray.done,
+              ...notesArray.middle.filter((obj) => {
+                if (id === obj.id) {
+                  return {
+                    ...obj,
+                    priority: (obj.priority = 'Done'),
+                  };
+                }
+              }),
+            ],
+            middle: notesArray.middle.filter((obj) => id !== obj.id),
+          };
+        } else {
+          return {
+            ...notesArray,
+            middle: notesArray.middle.filter((obj) => id !== obj.id),
+          };
+        }
+      });
+    } else if (priority === 'Low') {
+      setNotesArray((notesArray) => {
+        if (type === 'check') {
+          return {
+            ...notesArray,
+            done: [
+              ...notesArray.done,
+              ...notesArray.low.filter((obj) => {
+                if (id === obj.id) {
+                  return {
+                    ...obj,
+                    priority: (obj.priority = 'Done'),
+                  };
+                }
+              }),
+            ],
+            low: notesArray.low.filter((obj) => id !== obj.id),
+          };
+        } else {
+          return {
+            ...notesArray,
+            low: notesArray.low.filter((obj) => id !== obj.id),
+          };
+        }
       });
     } else {
       setNotesArray((notesArray) => {
         return {
           ...notesArray,
-          low: notesArray.low.filter((obj) => id !== obj.id),
+          done: notesArray.done.filter((obj) => id !== obj.id),
         };
       });
     }
@@ -49,8 +110,15 @@ function TaskList() {
           return (
             <Row key={task.id} className='taskRow'>
               <div id='taskComp' className='col-1 offset-3 taskCompHigh'>
-                <i class='fa-solid fa-check'></i>
-                <button onClick={() => handleDelete(task.id, task.priority)}>
+                <button
+                  onClick={() => handleDelete(task.id, task.priority, 'check')}
+                >
+                  <i class='fa-solid fa-check'></i>
+                </button>
+
+                <button
+                  onClick={() => handleDelete(task.id, task.priority, 'delete')}
+                >
                   <i class='fa-regular fa-trash-can'></i>
                 </button>
               </div>
@@ -78,8 +146,14 @@ function TaskList() {
           return (
             <Row key={task.id} className='taskRow'>
               <div id='taskComp' className='col-1 offset-3 taskCompMiddle'>
-                <i class='fa-solid fa-check'></i>
-                <button onClick={() => handleDelete(task.id, task.priority)}>
+                <button
+                  onClick={() => handleDelete(task.id, task.priority, 'check')}
+                >
+                  <i class='fa-solid fa-check'></i>
+                </button>
+                <button
+                  onClick={() => handleDelete(task.id, task.priority, 'delete')}
+                >
                   <i class='fa-regular fa-trash-can'></i>
                 </button>
               </div>
@@ -106,12 +180,48 @@ function TaskList() {
           return (
             <Row key={task.id} className='taskRow'>
               <div id='taskComp' className='col-1 offset-3 taskCompLow'>
-                <i class='fa-solid fa-check'></i>
-                <button onClick={() => handleDelete(task.id, task.priority)}>
+                <button
+                  onClick={() => handleDelete(task.id, task.priority, 'check')}
+                >
+                  <i class='fa-solid fa-check'></i>
+                </button>
+
+                <button
+                  onClick={() => handleDelete(task.id, task.priority, 'delete')}
+                >
                   <i class='fa-regular fa-trash-can'></i>
                 </button>
               </div>
               <Col className='taskCol lowTask' sm={{ span: 7 }}>
+                <div className='titleSide'>
+                  <div>{task.taskTitle}</div>
+                  <div>Description: {task.description}</div>
+                </div>
+
+                <div className='dateSide'>
+                  <div>
+                    Date: {task.startDate}--{task.endDate}
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          );
+        })}
+      <div id='doneLabel' className='col-9 offset-2 labels'>
+        Finished Tasks
+      </div>
+      {notesArray.done.length > 0 &&
+        notesArray.done.map((task) => {
+          return (
+            <Row key={task.id} className='taskRow'>
+              <div id='taskComp' className='col-1 offset-3 taskCompDone'>
+                <button
+                  onClick={() => handleDelete(task.id, task.priority, 'delete')}
+                >
+                  <i class='fa-regular fa-trash-can'></i>
+                </button>
+              </div>
+              <Col className='taskCol doneTask' sm={{ span: 7 }}>
                 <div className='titleSide'>
                   <div>{task.taskTitle}</div>
                   <div>Description: {task.description}</div>
