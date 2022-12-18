@@ -1,3 +1,6 @@
+//from the top of package json
+// "homepage": "https://ismailsevgi.github.io/habit_tracker",
+
 import React, { createContext, useEffect, useState } from 'react';
 
 import { format, endOfISOWeek, nextMonday } from 'date-fns';
