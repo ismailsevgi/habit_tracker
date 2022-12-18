@@ -9,6 +9,7 @@ function TaskList() {
     if (priority === 'High') {
       setNotesArray((notesArray) => {
         if (type === 'check') {
+          setToastMsg('Task is finished!');
           return {
             ...notesArray,
             done: [
@@ -25,6 +26,7 @@ function TaskList() {
             high: notesArray.high.filter((obj) => id !== obj.id),
           };
         } else {
+          setToastMsg('Task is deleted!');
           return {
             ...notesArray,
             high: notesArray.high.filter((obj) => id !== obj.id),
@@ -34,6 +36,7 @@ function TaskList() {
     } else if (priority === 'Middle') {
       setNotesArray((notesArray) => {
         if (type === 'check') {
+          setToastMsg('Task is finished!');
           return {
             ...notesArray,
             done: [
@@ -50,6 +53,7 @@ function TaskList() {
             middle: notesArray.middle.filter((obj) => id !== obj.id),
           };
         } else {
+          setToastMsg('Task is deleted!');
           return {
             ...notesArray,
             middle: notesArray.middle.filter((obj) => id !== obj.id),
@@ -59,6 +63,7 @@ function TaskList() {
     } else if (priority === 'Low') {
       setNotesArray((notesArray) => {
         if (type === 'check') {
+          setToastMsg('Task is finished!');
           return {
             ...notesArray,
             done: [
@@ -75,6 +80,7 @@ function TaskList() {
             low: notesArray.low.filter((obj) => id !== obj.id),
           };
         } else {
+          setToastMsg('Task is deleted!');
           return {
             ...notesArray,
             low: notesArray.low.filter((obj) => id !== obj.id),
@@ -82,6 +88,7 @@ function TaskList() {
         }
       });
     } else {
+      setToastMsg('Task is deleted!');
       setNotesArray((notesArray) => {
         return {
           ...notesArray,
@@ -91,7 +98,7 @@ function TaskList() {
     }
 
     const x = document.getElementById('toast');
-    setToastMsg('Task is deleted!');
+
     x.className = 'show';
 
     setTimeout(function () {

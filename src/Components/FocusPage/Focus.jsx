@@ -37,14 +37,14 @@ function popSound() {
 
 const allStates = {
   initialTimeState: {
-    hour: 0,
     min: 0,
     sec: 0,
   },
-  initialPoromodoState: {
+  pomodoro: {
     mode: false,
-    pomoCounter: 0,
+    counter: 0,
   },
+
   initialControlState: { start: false, reset: false },
 };
 
@@ -53,65 +53,22 @@ const allStates = {
 function Focus() {
   const { setToastMsg, toastMsg } = useContext(GlobalContext);
   const [time, setTime] = useState(allStates.initialTimeState);
+  const [pomodoro, setpomodoro] = useState(allStates.pomodoro);
 
-  const [poromodo, setPoromodo] = useState(allStates.initialPoromodoState);
   const [control, setControl] = useState(allStates.initialControlState);
 
   //changes the time obj; handles the custom input.
-  function handleTime(e) {
-    let { name, value } = e.target;
-
-    if (typeof value !== 'string' || value < '0') {
-      value = '0';
-    }
-    switch (name) {
-      default:
-        console.log('Default!');
-        break;
-      case 'sec':
-        setTime({ ...time, sec: parseInt(value) });
-
-        break;
-      case 'min':
-        setTime({ ...time, min: parseInt(value) });
-
-        break;
-      case 'hour':
-        setTime({ ...time, hour: parseInt(value) });
-        break;
-    }
-  }
-
-  //handles the mode
-  function handleMode() {
-    setPoromodo({ ...poromodo, mode: !poromodo.mode });
-
-    if (poromodo.mode) {
-      setPoromodo({
-        mode: !poromodo.mode,
-        pomoCounter: (poromodo.pomoCounter = 1),
-      });
-      setTime({ ...time, min: (time.min = 25), sec: (time.sec = 0) });
-      popSound();
-    } else {
-      setPoromodo({
-        mode: !poromodo.mode,
-        pomoCounter: (poromodo.pomoCounter = 0),
-      });
-      setTime({ ...time, min: (time.min = 0), sec: (time.sec = 0) });
-    }
-  }
 
   //starting and pausing button
 
   function resetTimer() {
     setTime(allStates.initialTimeState);
-    setPoromodo(allStates.initialPoromodoState);
+
     setControl(allStates.initialControlState);
   }
 
   function startTimer() {
-    if (time.day > 0 || time.hour > 0 || time.min > 0 || time.sec > 0) {
+    if (time.min > 0 || time.sec > 0) {
       setControl({ ...control, start: !control.start });
 
       const x = document.getElementById('toast');
@@ -124,6 +81,13 @@ function Focus() {
 
       control.start ? setToastMsg('PAUSED') : setToastMsg('STARTED');
     } else {
+      console.log('Start Verildi');
+      setpomodoro({ ...pomodoro, mode: true });
+      setControl({ ...control, start: true });
+      setTime({
+        min: 25,
+        sec: 0,
+      });
       const x = document.getElementById('toast');
 
       x.className = 'show';
@@ -132,234 +96,124 @@ function Focus() {
         x.className = x.className.replace('show', '');
       }, 3000);
 
-      setToastMsg('Please enter positive number!');
+      setToastMsg('Timer Started!');
     }
   }
 
   //poromodo mode switch decides which interval to use.
   useEffect(() => {
-    if (!poromodo.mode) {
-      const myInterval = setInterval(() => {
-        if (time.sec === 6 && time.min === 0) {
-          SoundPlay();
-        }
-
-        if (
-          time.sec === 0 &&
-          time.min === 0 &&
-          time.hour === 0 &&
-          time.day === 0
-        ) {
-          clearInterval(myInterval);
-        }
-
-        if (time.sec !== 0) {
-          setTime({ ...time, sec: (time.sec -= 1) });
-        }
-
-        if (time.sec === 0 && time.min >= 1) {
-          setTime({ ...time, min: (time.min -= 1), sec: (time.sec = 59) });
-        }
-
-        if (time.sec === 0 && time.hour >= 1) {
-          setTime({
-            ...time,
-            hour: (time.hour -= 1),
-            min: (time.min = 59),
-            sec: (time.sec = 59),
-          });
-        }
-
-        if (time.sec === 0 && time.day >= 1) {
-          setTime({
-            ...time,
-            day: (time.day -= 1),
-            hour: (time.hour = 23),
-            min: (time.min = 59),
-            sec: (time.sec = 59),
-          });
-        }
-      }, 1000);
-      if (control.start === false) {
-        clearInterval(myInterval);
+    const myInterval = setInterval(() => {
+      if (time.sec === 6 && time.min === 0) {
+        SoundPlay();
       }
-      return () => clearInterval(myInterval);
-    }
-    if (poromodo.mode) {
-      const myInterval = setInterval(() => {
-        if (time.sec === 6 && time.min === 0) {
-          SoundPlay();
-        }
 
-        if (time.sec === 0 && time.min === 0) {
-          if (
-            poromodo.pomoCounter % 2 === 0 &&
-            poromodo.pomoCounter !== 7 &&
-            poromodo.pomoCounter !== 8
-          ) {
-            setPoromodo({ ...poromodo, pomoCounter: poromodo.pomoCounter + 1 });
-
-            popSound();
-
-            setTime({ ...time, min: (time.min = 25), sec: (time.sec = 0) });
-          }
-          if (poromodo.pomoCounter % 2 === 1 && poromodo.pomoCounter !== 7) {
-            setPoromodo({ ...poromodo, pomoCounter: poromodo.pomoCounter + 1 });
-
-            setTime({ ...time, min: (time.min = 5), sec: (time.sec = 0) });
-          }
-
-          if (poromodo.pomoCounter === 7) {
-            setPoromodo({ ...poromodo, pomoCounter: poromodo.pomoCounter + 1 });
-            setTime({ ...time, min: (time.min = 30), sec: (time.sec = 0) });
-          }
-          if (poromodo.pomoCounter === 8) {
-            setPoromodo({
-              mode: (poromodo.mode = false),
-              pomoCounter: (poromodo.pomoCounter = 0),
-            });
-            return () => clearInterval(myInterval);
-          }
-        }
-
-        if (time.sec !== 0) {
-          console.log('time.sec !== 0', time.sec);
-          console.log('control.start :', control.start);
-          setTime({ ...time, sec: (time.sec -= 1) });
-        }
-
-        if (time.sec === 0 && time.min >= 1) {
-          setTime({ ...time, min: (time.min -= 1), sec: (time.sec = 59) });
-        }
-
-        if (time.sec === 0 && time.hour >= 1) {
-          setTime({
-            ...time,
-            hour: (time.hour -= 1),
-            min: (time.min = 59),
-            sec: (time.sec = 59),
-          });
-        }
-
-        if (time.sec === 0 && time.day >= 1) {
-          setTime({
-            ...time,
-            day: (time.day -= 1),
-            hour: (time.hour = 23),
-            min: (time.min = 59),
-            sec: (time.sec = 59),
-          });
-        }
-      }, 1000);
-      if (control.start === false) {
+      if (pomodoro.counter === 8) {
         clearInterval(myInterval);
+        setTime(allStates.initialTimeState);
+        setpomodoro(allStates.pomodoro);
+        setControl(allStates.initialControlState);
       }
-      return () => {
-        console.log('Return e girdi');
-        clearInterval(myInterval);
-      };
+
+      if (pomodoro.counter === 7) {
+        setTime({ min: (time.min = 30), sec: (time.sec = 0) });
+      }
+
+      if (time.sec !== 0) {
+        setTime({ ...time, sec: (time.sec -= 1) });
+      }
+
+      if (
+        pomodoro.counter % 2 === 0 &&
+        time.sec === 0 &&
+        time.min === 0 &&
+        pomodoro.counter < 7
+      ) {
+        setpomodoro((prev) => {
+          return { ...prev, counter: prev.counter + 1 };
+        });
+        setTime({ min: (time.min = 5), sec: (time.sec = 0) });
+        popSound();
+      }
+
+      if (
+        pomodoro.counter % 2 === 1 &&
+        time.sec === 0 &&
+        time.min === 0 &&
+        pomodoro.counter < 7
+      ) {
+        setpomodoro((prev) => {
+          return { ...prev, counter: prev.counter + 1 };
+        });
+        setTime({ min: (time.min = 25), sec: (time.sec = 0) });
+      }
+
+      if (time.sec === 0 && time.min === 0) {
+        console.log('times up');
+        setpomodoro({ ...pomodoro, counter: pomodoro.counter + 1 });
+      }
+
+      if (time.sec === 0 && time.min >= 1) {
+        setTime({ min: (time.min -= 1), sec: (time.sec = 59) });
+      }
+    }, 1000);
+
+    if (control.start === false) {
+      clearInterval(myInterval);
     }
-  }, [control, poromodo.mode]);
+    return () => clearInterval(myInterval);
+  }, [control, pomodoro.counter]);
 
   //mode açık olursa borderlar turuncu olacak!
 
   return (
     <div className='container'>
-      <div className='row poromodoRow'>
-        <div className='col-4 promoTitle'>
-          <h1>POROMODO STUDY</h1>
-          <button onClick={handleMode}>
-            MODE {poromodo.mode ? 'ON' : 'OFF'}
-          </button>
-        </div>
-        <div className='col-2 tomato'>
-          {poromodo.pomoCounter <= 0 && (
-            <img src={tomato_unfinished} alt='tomato' />
-          )}
-          {poromodo.pomoCounter >= 1 && <img src={tomato_done} alt='tomato' />}
-        </div>
-        <div className='col-2 tomato'>
-          {poromodo.pomoCounter <= 2 && (
-            <img src={tomato_unfinished} alt='tomato' />
-          )}
-          {poromodo.pomoCounter >= 3 && <img src={tomato_done} alt='tomato' />}
-        </div>
-        <div className='col-2 tomato'>
-          {poromodo.pomoCounter <= 4 && (
-            <img src={tomato_unfinished} alt='tomato' />
-          )}
-          {poromodo.pomoCounter >= 5 && <img src={tomato_done} alt='tomato' />}
-        </div>
-        <div className='col-2 tomato'>
-          {poromodo.pomoCounter <= 6 && (
-            <img src={tomato_unfinished} alt='tomato' />
-          )}
-          {poromodo.pomoCounter >= 7 && <img src={tomato_done} alt='tomato' />}
+      <div className='poromodoRow'>
+        <div className='promoTitle'>
+          <h1>POMODORO STUDY</h1>
         </div>
       </div>
 
       <hr></hr>
       <div className='numbersRow'>
-        <div className='numbers item-1'>
-          {!control.start ? (
-            <input
-              type='number'
-              name='hour'
-              maxLength={2}
-              max={59}
-              placeholder={time.hour < 10 ? `0${time.hour}` : time.hour}
-              onChange={(e) => handleTime(e)}
-              readOnly={poromodo.mode}
-            />
-          ) : (
-            <div className='default'>
-              {time.hour < 10 ? `0${time.hour}` : time.hour}
-            </div>
+        <div className='numbers tomato'>
+          {pomodoro.counter <= 0 && (
+            <img src={tomato_unfinished} alt='tomato' />
           )}
-          <div className='numbers-label'>
-            <p>HOURS</p>
-          </div>
+          {pomodoro.counter >= 1 && <img src={tomato_done} alt='tomato' />}
         </div>
-        <div className='numbers item-2'>
-          {!control.start ? (
-            <input
-              type='number'
-              name='min'
-              maxLength={2}
-              max={59}
-              placeholder={time.min < 10 ? `0${time.min}` : time.min}
-              onChange={(e) => handleTime(e)}
-              readOnly={poromodo.mode}
-            />
-          ) : (
-            <div className='default'>
-              {time.min < 10 ? `0${time.min}` : time.min}
-            </div>
+        <div className='numbers tomato'>
+          {pomodoro.counter <= 2 && (
+            <img src={tomato_unfinished} alt='tomato' />
           )}
+          {pomodoro.counter >= 3 && <img src={tomato_done} alt='tomato' />}
+        </div>
+        <div className='numbers item-1'>
+          <div className='default'>
+            {time.min < 10 ? `0${time.min}` : time.min}
+          </div>
           <div className='numbers-label'>
             <p>MINUTES</p>
           </div>
         </div>
-
-        <div className='numbers item-3'>
-          {!control.start ? (
-            <input
-              type='number'
-              name='sec'
-              max={59}
-              maxLength={2}
-              placeholder={time.sec < 10 ? `0${time.sec}` : time.sec}
-              onChange={(e) => handleTime(e)}
-              readOnly={poromodo.mode}
-            />
-          ) : (
-            <div className='default default-sec'>
-              {time.sec < 10 ? `0${time.sec}` : time.sec}
-            </div>
-          )}
+        <div className='numbers item-2'>
+          <div className='default default-sec'>
+            {time.sec < 10 ? `0${time.sec}` : time.sec}
+          </div>
           <div className='numbers-label'>
             <p>SECONDS</p>
           </div>
+        </div>
+        <div className='numbers tomato'>
+          {pomodoro.counter <= 4 && (
+            <img src={tomato_unfinished} alt='tomato' />
+          )}
+          {pomodoro.counter >= 5 && <img src={tomato_done} alt='tomato' />}
+        </div>
+        <div className='numbers tomato'>
+          {pomodoro.counter <= 6 && (
+            <img src={tomato_unfinished} alt='tomato' />
+          )}
+          {pomodoro.counter >= 7 && <img src={tomato_done} alt='tomato' />}
         </div>
       </div>
 
