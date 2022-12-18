@@ -180,15 +180,15 @@
 
 #myForm {
   margin-top: 3rem;
-  height: 60vh;
-  width: 30vw;
+  height: 50vh;
+  width: 20vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #0652dd !important;
   border: 2px solid white;
-  border-radius: 0px;
+  border-radius: 15px;
 }
 
 #createBtn {
@@ -197,6 +197,8 @@
   font-family: 'Times New Roman', Times, serif;
   letter-spacing: 1px;
   font-weight: bold;
+  font-size: 1.2rem;
+  color: black;
 }
 
 .form-outline {
@@ -205,4 +207,8 @@
 
 .form-label {
   background-color: #0652dd;
+}
+
+#myForm h3 {
+  background-color: transparent;
 }

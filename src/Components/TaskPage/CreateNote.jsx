@@ -104,14 +104,12 @@ function CreateNote() {
     task !== null && submitTask(task);
   }, [task]);
 
-  // function handleChange(values) {
-  //   //your modification on passed value ....
-  //   setValues(values);
-  //   console.log('current value: ', values);
-  // }
-
   return (
     <form id='myForm' onSubmit={formik.handleSubmit}>
+      <div className='form-outline mb-4'>
+        <h3>Create a new task</h3>
+      </div>
+
       <div className='form-outline mb-4'>
         <label className='form-label' for='taskTitle'>
           Task Title

@@ -78,8 +78,6 @@ function Performance() {
           (goal) => goal.goalType === 'Daily' && goal.goalName === selectedGoal
         ) //filter ile Weekly typelar atıldı!
         .map((goal) => {
-          console.log('gelen goal: ', goal);
-          console.log('gelen goal.goalsAmountsArray: ', goal.goalsAmountsArray);
           return {
             label: goal.goalName,
             data:
